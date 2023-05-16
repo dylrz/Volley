@@ -1,0 +1,138 @@
+body{
+    background-color: black;
+}
+
+.wrapper{
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: auto;
+    perspective: 10px;
+}
+
+
+.div {
+    <!max-width: 850px;
+    max-height: 1200px;
+    margin: auto;
+    display: block;
+  }
+
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    transform-style: preserve-3d;
+    z-index: -10;
+}
+
+.background{
+    transform: translateZ(-10px) scale(2);
+}
+
+.foreground{
+    transform: translateZ(-5px) scale(1.5);
+}
+
+.background{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: -10;
+}
+
+.background1{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: -20;
+}
+
+.background1{
+    transform: translateZ(-10px) scale(2);
+}
+.foreground{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    align-self: left;
+    z-index: -10;
+}
+.maintitle{
+    font-size: 6rem;
+    color: white;
+    text-shadow: 0 0 10px black;
+    position: absolute;
+    text-align: center;
+}
+
+.title{
+    font-size: 4rem;
+    color: white;
+    text-shadow: 0 0 10px black;
+    position: absolute;
+    text-align: center;
+}
+
+.subtitle{
+    font-size: 3rem;
+    font-weight: bold;
+    color: bisque;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+section{
+    font-size: 1rem;
+    padding: 1rem;
+    background-color: #333;
+    color: white;
+    min-width: none;
+    min-height: none;
+}
+
+.table{
+    min-width: 150px;
+    font-size: 1.2rem;
+    border: 1px solid wheat;
+    border-collapse: collapse;
+    border-radius: 5px;
+}
+
+td {
+    min-width: 260px;
+    border-left: 1px solid wheat;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    min-width: 100px;
+}
+
+.subsubtitle{
+    font-size: 2rem;
+    font-weight: bold;
+    color: bisque;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.paragraph{
+    font-size: 1.1rem;
+}
+
+a {
+    font-size: 2rem;
+    text-decoration: none;
+    color: bisque;
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+    float: right;
+}
