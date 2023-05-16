@@ -1,5 +1,5 @@
 body{
-    background-color: black;
+    background-color: #333;
 }
 
 .wrapper{
@@ -26,23 +26,27 @@ header{
     z-index: -10;
 }
 
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+}
+
 .background{
     transform: translateZ(-10px) scale(2);
 }
 
 .foreground{
-    transform: translateZ(-5px) scale(1.5);
+    transform: translateZ(-5px) scale(0.45);
+}
+
+.foreground1 {
+    transform:translateZ(-5px) scale(2.5);
 }
 
 .background{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    z-index: -10;
-}
-
-.background1{
     position: absolute;
     height: 100%;
     width: 100%;
@@ -50,21 +54,17 @@ header{
     z-index: -20;
 }
 
-.background1{
-    transform: translateZ(-10px) scale(2);
-}
-.foreground{
-    position: relative;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    align-self: left;
-    z-index: -10;
-}
 .maintitle{
     font-size: 6rem;
     color: white;
     text-shadow: 0 0 10px black;
+    position: absolute;
+    text-align: center;
+}
+.notsomaintitle{
+    font-size: 3rem;
+    color: white;
+    text-shadow: 0 0 5px black;
     position: absolute;
     text-align: center;
 }
@@ -103,7 +103,7 @@ section{
 }
 
 td {
-    min-width: 260px;
+    min-width: 300px;
     border-left: 1px solid wheat;
     border-collapse: collapse;
 }
@@ -118,7 +118,7 @@ th {
     font-weight: bold;
     color: bisque;
     font-weight: bold;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .paragraph{
@@ -127,6 +127,13 @@ th {
 
 a {
     font-size: 2rem;
+    text-decoration: none;
+    color: bisque;
+    text-align: left;
+}
+
+.titlepagelink {
+    font-size: 1rem;
     text-decoration: none;
     color: bisque;
     text-align: left;
