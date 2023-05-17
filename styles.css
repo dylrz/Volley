@@ -1,145 +1,144 @@
-body{
+body {
     background-color: #333;
-}
+  }
 
-.wrapper{
+  .wrapper {
     height: 100vh;
     overflow-y: auto;
-    overflow-x: auto;
+    overflow-x: hidden;
     perspective: 10px;
-}
+  }
 
-
-.div {
-    <!max-width: 850px;
+  .div {
+    max-width: 850px;
     max-height: 1200px;
     margin: auto;
     display: block;
   }
 
-header{
+  header {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
     transform-style: preserve-3d;
     z-index: -10;
-}
+  }
 
-.row {
+  .row {
     display: flex;
-}
+  }
 
-.column {
+  .column {
     flex: 50%;
-}
+  }
 
-.background{
+  .background {
     transform: translateZ(-10px) scale(2);
-}
+  }
 
-.foreground{
+  .foreground {
     transform: translateZ(-5px) scale(0.45);
-}
+  }
 
-.foreground1 {
-    transform:translateZ(-5px) scale(2.5);
-}
+  .foreground1 {
+    transform: translateZ(-5px) scale(2.5);
+  }
 
-.background{
+  .background {
     position: absolute;
     height: 100%;
     width: 100%;
     object-fit: cover;
     z-index: -20;
-}
+  }
 
-.maintitle{
+  .maintitle {
     font-size: 6rem;
     color: white;
     text-shadow: 0 0 10px black;
     position: absolute;
     text-align: center;
-}
-.notsomaintitle{
+  }
+
+  .notsomaintitle {
     font-size: 3rem;
     color: white;
     text-shadow: 0 0 5px black;
     position: absolute;
     text-align: center;
-}
+  }
 
-.title{
+  .title {
     font-size: 4rem;
     color: white;
     text-shadow: 0 0 10px black;
     position: absolute;
     text-align: center;
-}
+  }
 
-.subtitle{
+  .subtitle {
     font-size: 3rem;
     font-weight: bold;
     color: bisque;
-    font-weight: bold;
     text-decoration: underline;
-}
+  }
 
-section{
+  section {
     font-size: 1rem;
     padding: 1rem;
     background-color: #333;
     color: white;
     min-width: none;
     min-height: none;
-}
+  }
 
-.table{
+  .table {
     min-width: 150px;
     font-size: 1.2rem;
     border: 1px solid wheat;
     border-collapse: collapse;
     border-radius: 5px;
-}
+  }
 
-td {
+  td {
     min-width: 300px;
     border-left: 1px solid wheat;
     border-collapse: collapse;
-}
+  }
 
-th {
+  th {
     text-align: left;
     min-width: 100px;
-}
+  }
 
-.subsubtitle{
+  .subsubtitle {
     font-size: 2rem;
     font-weight: bold;
     color: bisque;
-    font-weight: bold;
     text-decoration: none;
-}
+  }
 
-.paragraph{
+  .paragraph {
     font-size: 1.1rem;
-}
+  }
 
-a {
+  a {
     font-size: 2rem;
     text-decoration: none;
     color: bisque;
     text-align: left;
-}
+  }
 
-.titlepagelink {
+  .titlepagelink {
     font-size: 1rem;
     text-decoration: none;
     color: bisque;
     text-align: left;
-}
+    z-index: 1;
+  }
 
-.right {
+  .right {
     text-align: right;
     float: right;
-}
+  }
