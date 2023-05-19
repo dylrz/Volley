@@ -5,7 +5,7 @@ IDP stands for Individual Development Plan
 
 A 10 week "Course" of self-improvement
 
-Taking this opportunity to learn how to build a website, and keep track of my progress
+Taking this opportunity to learn how to build a website that keeps track of my progress
 
 Weekly updates every Saturday
 
