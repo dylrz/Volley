@@ -55,7 +55,7 @@ body {
 
   .maintitle {
     font-size: 6rem;
-    color: white;
+    color: rgb(255, 255, 255);
     text-shadow: 0 0 10px black;
     position: absolute;
     text-align: center;
@@ -81,7 +81,7 @@ body {
     font-size: 3rem;
     font-weight: bold;
     color: bisque;
-    text-decoration: underline;
+    text-decoration: none;
   }
 
   section {
@@ -131,7 +131,7 @@ body {
   }
 
   .titlepagelink {
-    font-size: 1rem;
+    font-size: 0.2rem;
     text-decoration: none;
     color: bisque;
     text-align: left;
