@@ -607,22 +607,23 @@ body {
       margin-right: auto;
     }
 
-    td {
-      min-width: 330px;
-      border-left: 1px solid wheat;
-      border-collapse: collapse;
-      font-size: 2.6rem;
-    }
-
     th {
       text-align: left;
-      min-width: 300px;
-      font-size: 3.2rem;
+      min-width: 210px;
+      font-size: 3rem;
       font-weight: bold;
     }
 
+    td {
+      min-width: 430px;
+      border-left: 1px solid wheat;
+      border-collapse: collapse;
+      font-size: 3.2rem;
+      height: 200px;
+    }
+
     .subsubtitle {
-      font-size: 5rem;
+      font-size: 3.4rem;
       font-weight: bold;
       color: bisque;
       text-align: center;
@@ -630,7 +631,10 @@ body {
     }
 
     .paragraph {
-      font-size: 3.4rem;
+      font-size: 2.85rem;
+      padding-left: 8px;
+      padding-right: 8px;
+      line-height: 140%;
     }
 
     a {
