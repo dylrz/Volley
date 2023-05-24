@@ -38,9 +38,11 @@ header {
   width: 100%;
   text-align: center;
 }
+
 .ovrview {
   line-height: 160%;
 }
+
 .background {
   transform: translateZ(-10px) scale(2);
 }
@@ -148,7 +150,7 @@ a {
 
 .titlepagelink {
   font-size: 1.2rem;
-  color:white;
+  color: white;
   text-align: center;
 }
 
@@ -210,10 +212,12 @@ a {
     width: 100%;
     text-align: center;
   }
+
   .ovrview {
     line-height: 160%;
 
   }
+
   .background {
     transform: translateZ(-10px) scale(2);
   }
@@ -321,7 +325,7 @@ a {
 
   .titlepagelink {
     font-size: 1.6rem;
-    color:white;
+    color: white;
     text-align: center;
   }
 
@@ -383,10 +387,12 @@ a {
     width: 100%;
     text-align: center;
   }
+
   .ovrview {
     line-height: 160%;
 
   }
+
   .background {
     transform: translateZ(-10px) scale(2);
   }
@@ -493,7 +499,7 @@ a {
 
   .titlepagelink {
     font-size: 2rem;
-    color:white;
+    color: white;
     text-align: center;
   }
 
@@ -551,10 +557,12 @@ a {
     width: 100%;
     text-align: center;
   }
+
   .ovrview {
     line-height: 160%;
 
   }
+
   .background {
     transform: translateZ(-10px) scale(2);
   }
@@ -665,7 +673,7 @@ a {
 
   .titlepagelink {
     font-size: 3.3rem;
-    color:white;
+    color: white;
     text-align: center;
   }
 
@@ -724,10 +732,12 @@ a {
     width: 100%;
     text-align: center;
   }
+
   .ovrview {
     line-height: 160%;
 
   }
+
   .background {
     transform: translateZ(-10px) scale(2);
   }
@@ -833,7 +843,7 @@ a {
 
   .titlepagelink {
     font-size: 4rem;
-    color:white;
+    color: white;
     text-align: center;
   }
 
