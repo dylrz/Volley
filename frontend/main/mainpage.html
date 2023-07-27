@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Volleyball Statistics Tracker</title>
+    <link rel="stylesheet" href="mainstyles.css" />
+    <script src="mainpage.js" defer></script>
+  </head>
+  <body>
+    <h1>VolleyTracker</h1>
+
+    <div class="container">
+      <div id="playerForm">
+        <h2>Player Information</h2>
+        <form id="playerInfoForm" onsubmit="createStatTables(event)">
+          <label for="numPlayers">Number of Players:</label>
+          <input type="number" id="numPlayers" min="1" max="12" required />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+    <script src="mainpage.js" defer></script>
+  </body>
+</html>
