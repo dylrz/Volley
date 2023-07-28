@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Simple Stat Tracking for Indoor Volleyball"
+    />
+    <title>VolleyTracker</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <header>
+        <img
+          src="../../imgs/volleyballcourt.png"
+          class="background"
+          alt="volleyballcourt"
+        />
+        <img
+          src="../../imgs/volleyball.png"
+          class="foreground"
+          alt="volleyball"
+        />
+        <h1 class="maintitle">VolleyTracker</h1>
+        <!-- Buttons to open the popups -->
+        <createbutton id="createAccountButton">Create Account</createbutton>
+        <loginbutton id="loginButton">Log In</loginbutton>
+        <a class="titlepagelink" href="../main/mainpage.html" target="_self"
+          ><guestbutton>Continue without logging in</guestbutton></a
+        >
+      </header>
+    </div>
+
+    <!-- Create Account Popup -->
+    <div id="createAccountPopup" class="popup">
+      <div class="popup-content">
+        <h2 class="title">Create Account</h2>
+        <!-- Form for email and password -->
+        <form action="/frontend/registration/registerpage.html" method="GET">
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName" name="firstName" required /><br />
+
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName" name="lastName" required /><br />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required /><br />
+
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required /><br />
+
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required /><br />
+
+          <input class="submitbutton" type="submit" value="Create Account" />
+        </form>
+        <button id="createAccountCloseButton">Close</button>
+      </div>
+    </div>
+
+    <!-- Log In Popup -->
+    <div id="loginPopup" class="popup">
+      <div class="popup-content">
+        <h2 class="title">Welcome Back!</h2>
+        <!-- Form for email and password -->
+        <form id="loginForm">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required /><br />
+
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required /><br />
+
+          <input class="submitbutton" type="submit" value="Login" />
+        </form>
+        <button id="loginCloseButton">Close</button>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- </header>
+    <section>
+      <div class="row">
+        <div class="column">
+          <div class="toc">
+            <h1 class="subtitle">Table of Contents</h1>
+            <a class="titlepagelink" href="week1.html" target="_self">Week One: Meditate</a>
+            <a class="titlepagelink" href="week2.html" target="_self"><br>Week Two: Philosophy</a>
+            <a class="titlepagelink" href="week3.html" target="_self"><br>Week Three: Dopamine & Motivation</a>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <h2 class="subtitle">Course Overview</h2>
+        <div style="text-align: center;">
+          <div class="overview" style="display: inline-block; text-align: left;">
+
+            <div class="subsubtitle">Get on the court, stay close to volleyball<br></div>
+            <p class="paragraph">- Come back from the summer with minimum rust.<br>
+              - Keep watching film and learning.<br><br>
+            </p>
+
+            <div class="subsubtitle">Lift and stretch, gain strength and mobility<br></div>
+            <p class="paragraph">- Goal is to always be physically available next year.<br>
+              - Baseline is high, but being an athlete this is important.<br><br>
+            </p>
+
+            <div class="subsubtitle">Eat a sustainable, nutrient dense diet<br></div>
+            <p class="paragraph">- Find a diet that I can maintain through next year.<br>
+              - Keep track of macros/calories<br><br>
+            </p>
+
+            <div class="subsubtitle">Meditation and Focus<br></div>
+            <p class="paragraph">- Perhaps more important than physical availability is mental availability.<br>
+              - Objective is to use meditation & focus to guide me toward more stability in
+              mindset and thus my mood/motivation.<br>
+              - Build habits that can be maintained throughout the year.<br><br>
+            </p>
+
+            <div class="subsubtitle">Read books. Knowledge is power<br></div>
+            <p class="paragraph">- Read books that expand my perspective and help build/adjust my mindset.<br><br></p>
+
+            <div class="subsubtitle">Become less affected by externalities<br></div>
+            <p class="paragraph">- A question to answer this summer is how I can be less affected by my environment
+              and shape my environment in a way that is conducive to my wellbeing.
+            </p>
+          </div>
+        </div>
+      </div>
+  </div>
+  <hr>
+  <hr>
+  <div class="right">
+    <a class="link" href="week1.html" target="_self">Week One</a>
+  </div>
+  </section>
+  </div>
+</body>
+</html> -->
