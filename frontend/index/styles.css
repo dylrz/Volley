@@ -10,6 +10,12 @@ header, body, input {
   font-family: 'Lato', sans-serif;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
 header {
   background-color: #47407b;
   padding: 10px;
@@ -247,7 +253,7 @@ form.signup-form {
 
 .btn.transparent:hover {
   /* border: 26px solid #ffffff; */
-  font-size: 1rem;
+  font-size: .95rem;
   text-shadow: 5px 5px 10px 10px rgba(255, 255, 255, 0.8);
 }
 
@@ -272,7 +278,7 @@ form.signup-form {
 
 .container.container.sign-up-mode .left-panel .image,
 .container.container.sign-up-mode .left-panel .content {
-  transform: translateX(-250%);
+  transform: translateX(-650%);
 }
 
 .container.sign-up-mode .right-panel .image,
@@ -360,7 +366,7 @@ form.signup-form {
   }
   
   .panel .content {
-    padding-right: 15%;
+    padding-right: 20%;
     transition: 1s 0.5s ease-in-out;
   }
 

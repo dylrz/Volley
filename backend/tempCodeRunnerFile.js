@@ -1,1 +1,1 @@
-/register
+  const { username, password: plainTextPassword } = req.body;
