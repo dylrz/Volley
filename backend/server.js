@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const path = require('path')
 
-const uri = 'mongodb+srv://dylrz:ballsack@cluster0.rruns2s.mongodb.net/VolleyTracker?retryWrites=true&w=majority'
+const uri = process.env.MONGODB_URI
 
 mongoose.connect(uri, {
 	useNewUrlParser: true,
