@@ -1,1 +1,1 @@
-  const { username, password: plainTextPassword } = req.body;
+res.render

@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const cookieSession = require("cookie-session")
 const path = require('path')
 
 const uri = process.env.MONGODB_URI
@@ -19,9 +20,9 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(cors())
+app.use(cors(corsOptions))
 
-app.use('/', express.static(path.join(__dirname, 'static')))
+app.use('/', express.static(path.join(__dirname + '/backend', 'static')))
 app.use(bodyParser.json())
 
 app.post('/api/register', async (req, res) => {
