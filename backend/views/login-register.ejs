@@ -8,25 +8,28 @@
       crossorigin="anonymous"
     ></script>
     <title>Sign Up or Log In</title>
-    <link rel="stylesheet" href="/backend/css/styles.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <header id="header">
     <h1 class="volleytracker" >VolleyTracker</h1>
-    <a href="../main/mainpage.html" class="nologin">Continue Without Logging In</a>
+    <a href="/main" class="nologin">Continue Without Logging In</a>
   </header>
   <body>
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="" class="signin-form" id="login-form">
+          <form action="/login" method="POST" class="signin-form" id="login-form">
             <h2 class="title">Sign In</h2>
+            <% if (typeof error !== 'undefined' && error) { %>
+              <div class="error-message"><%= error %></div>
+            <% } %>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" autocomplete="off" id="username" placeholder="Username" />
+              <input type="text" autocomplete="off" id="username" name="username" placeholder="Username" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" autocomplete="off" id="password" placeholder="Password" />
+              <input type="password" autocomplete="off" id="password" name="password" placeholder="Password" />
             </div>
             <input type="submit" id='signInButton' value="Login" class="btn solid"/>
 
@@ -38,23 +41,23 @@
             </div>
           </form>
 
-          <form action="" class="signup-form" id="reg-form">
+          <form action="/" method="POST" class="signup-form" id="reg-form">
             <h2 class="title">Sign Up</h2>
             <div class="input-field">
               <i class="fas fa-a"></i>
-              <input type="text" autocomplete="off" id="name" placeholder="Name" />
+              <input type="text" autocomplete="off" id="name" name="name" placeholder="Name" />
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" autocomplete="off" id="email" placeholder="E-Mail" />
+              <input type="email" autocomplete="off" id="email" name="email" placeholder="E-Mail" />
             </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" autocomplete="off" id="createusername" placeholder="Username" />
+              <input type="text" autocomplete="off" id="createusername" name="createusername" placeholder="Username" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" autocomplete="off" id="createpassword" placeholder="Password" />
+              <input type="password" autocomplete="off" id="createpassword" name="createpassword" placeholder="Password" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
@@ -79,7 +82,7 @@
             <p>Click sign up to get started.</p>
             <button class="btn transparent" id="sign-up-btn">Sign Up</button>
           </div>
-        <img src="../../backend/imgs/setter.svg" class="image" alt="setter" />
+        <img src="../imgs/setter.svg" class="image" alt="spiker" />
         </div>
 
         <div class="panel right-panel">
@@ -88,12 +91,12 @@
             <p>Already have an account? Click sign in.</p>
             <button class="btn transparent" id="sign-in-btn">Sign In</button>
           </div>
-        <img src="../../backend/imgs/spiker.svg" class="image" alt="setter" />
+        <img src="../imgs/spiker.svg" class="image" alt="setter" />
         </div>
       </div>
       </div>
     </div>
-    <script src="app.js"></script>
+    <script src="../css/index.js"></script>
   </body>
 </html>
 

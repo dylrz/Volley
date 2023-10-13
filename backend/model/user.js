@@ -1,17 +1,29 @@
-// User.js
-  
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose');
-var User = new Schema({
+
+const UserSchema = new Schema({
+    name: {
+        type: String,
+        // required: true
+    },
+    email: {
+        type: String,
+        // required: true,
+        unique: true
+    },
     username: {
-        type: String
+        type: String,
+        unique: true,
+        required: true
     },
     password: {
-        type: String
+        type: String,
+        required: true
     }
-})
-  
-User.plugin(passportLocalMongoose);
-  
-module.exports = mongoose.model('User', User)
+});
+
+// Let passportLocalMongoose handle the hashing and salting of the password
+UserSchema.plugin(passportLocalMongoose);
+
+module.exports = mongoose.model('User', UserSchema);

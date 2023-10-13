@@ -107,6 +107,14 @@ form.signup-form {
   text-shadow: 2px 2px 1px #a883c1;
 }
 
+.error-message {
+  font-size: 1rem;
+  /* text-decoration: underline; */
+  color: #ffffff;
+  margin-bottom: 5px;
+  text-shadow: 1px 2px 1px #ffa43c;
+}
+
 .input-field {
   max-width: 380px;
   width: 100%;

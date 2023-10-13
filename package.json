@@ -2,7 +2,7 @@
   "name": "dylrz.github.io",
   "version": "1.0.0",
   "description": "VolleyTracker",
-  "main": "server.js",
+  "main": "backend/app.js",
   "scripts": {
     "devStart": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"

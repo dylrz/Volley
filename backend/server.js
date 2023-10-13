@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const cookieSession = require("cookie-session")
 const path = require('path')
+const bcrypt = require('bcryptjs')
 
 const uri = process.env.MONGODB_URI
 
@@ -25,9 +26,8 @@ app.use(cors(corsOptions))
 app.use('/', express.static(path.join(__dirname + '/backend', 'static')))
 app.use(bodyParser.json())
 
-app.post('/api/register', async (req, res) => {
-    const { username, password: plainTextPassword } = req.body;
-    console.log(req.body)
+app.post('/', async (req, res) => {
+    const { name, email, username, password: plainTextPassword, passwordconfirm: plainTextPasswordConfirmation} = req.body;
     if (!username || typeof username !== 'string') {
       return res.json({ status: 'error', error: 'Invalid username' });
     }
@@ -36,23 +36,32 @@ app.post('/api/register', async (req, res) => {
       return res.json({ status: 'error', error: 'Invalid password' });
     }
   
-    if (plainTextPassword.length < 6) {
+    if (plainTextPassword.length < 8) {
       return res.json({
         status: 'error',
-        error: 'Password too small. Should be at least 6 characters',
+        error: 'Password too small. Should be at least 8 characters',
       });
     }
-  
+
+    if (plainTextPassword !== plainTextPasswordConfirmation) {
+      return res.json({
+        status: 'error',
+        error: 'Passwords do not match. Try again'
+      })
+    }
+    
     const password = await bcrypt.hash(plainTextPassword, 10);
   
     try {
       const response = await User.create({
+        name,
+        email,
         username,
-        password,
+        password
       });
       console.log('User created successfully: ', response);
 
-      res.json({ status: 'ok' });
+      res.redirect('/main')
     } catch (error) {
       if (error.code === 11000) {
         // Duplicate key (username already in use)
@@ -64,6 +73,7 @@ app.post('/api/register', async (req, res) => {
       res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
       res.status(500).json({ status: 'error', error: 'Internal server error' });
     }
+
 });
 
 app.listen(12345, () => {
