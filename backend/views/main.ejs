@@ -10,17 +10,16 @@
   </head>
   <body>
     <h1>VolleyTracker</h1>
-
     <div class="container">
       <div id="playerForm">
-        <h2>Hello Guest</h2>
+        <h2>Hello <%= name %>!</h2>
         <form id="playerInfoForm" onsubmit="createStatTables(event)">
-          <label for="numPlayers">Number of Players:</label>
+          <label for="numPlayers">Create A Team</label>
           <input type="number" id="numPlayers" min="1" max="12" required />
           <button type="submit">Submit</button>
         </form>
-        <li><a href="/">Logout</a></li>
       </div>
+      <li><a href="/">Logout</a></li>
     </div>
     <script src="../css/mainpage.js" defer></script>
   </body>

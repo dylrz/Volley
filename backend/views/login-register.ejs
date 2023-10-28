@@ -43,6 +43,9 @@
 
           <form action="/" method="POST" class="signup-form" id="reg-form">
             <h2 class="title">Sign Up</h2>
+            <% if (typeof error !== 'undefined' && error) { %>
+              <div class="error-message"><%= error %></div>
+            <% } %>
             <div class="input-field">
               <i class="fas fa-a"></i>
               <input type="text" autocomplete="off" id="name" name="name" placeholder="Name" />
@@ -61,7 +64,7 @@
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" autocomplete="off" id="createpasswordconfirm" placeholder="Confirm Password" />
+              <input type="password" autocomplete="off" id="createpasswordconfirm" name="createpasswordconfirm placeholder="Confirm Password" />
             </div>
             <input type="submit" id="signUpButton" value="Sign Up" class="btn solid" />
 
@@ -72,7 +75,6 @@
               </a>
             </div>
           </form>
-
         </div>
       </div>
       <div class="panels-container">
@@ -96,6 +98,9 @@
       </div>
       </div>
     </div>
+    <script>
+      var showForm = '<%= form %>';
+    </script>
     <script src="../css/index.js"></script>
   </body>
 </html>

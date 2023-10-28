@@ -1,0 +1,208 @@
+CSS Styling
+body {
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #494949;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    font-size: 4rem;
+    color: rgb(219, 219, 219);
+    text-shadow: 0 0 20px #000000;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 25px;
+    color: rgb(219, 219, 219);
+    text-shadow: 0 0 10px #000000;
+  }
+
+  label {
+    margin-bottom: 6px;
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 10px #000000;
+    text-align: right;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #898989;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 4);
+  }
+  
+  .player-stats {
+    margin-bottom: 30px;
+  }
+  
+  .stat-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .stat-row label {
+    flex-basis: 100px;
+  }
+  
+  .stat-row input[type="number"] {
+    flex-grow: 1;
+    padding: 5px;
+  }
+  
+  .button-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  button {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #4caf50;
+  }
+
+  /* for the '+' button on stat page */
+  incrementbutton {
+    padding: 10px 25px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #4caf50;
+  }
+
+  /* for the '-' button on stat page */
+  decrementbutton {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    margin-left: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #af5b4c;
+  }
+
+  incrementbutton:hover {
+    background-color: #ddd;
+  }
+
+  decrementbutton:hover{
+    background-color: #ddd;
+  }
+
+  #resetButton {
+    background-color: #f44336;
+    color: #fff;
+    margin-right: 10px;
+  }
+  
+  #submitButton {
+    background-color: #4caf50;
+    color: #fff;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stat-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .stat-row label {
+    margin-right: 10px;
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-group input {
+    margin-right: 10px;
+    width: 50px;
+  }
+  
+  .button-group {
+    display: flex;
+  }
+  
+  .button-group button {
+    margin-left: 5px;
+  }
+  
+  input {
+    text-align: center;
+  }
+  .button-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+
+  .player-name-container {
+    display: flex;
+    align-items: center;
+  }
+  
+/* edit button for name changing */
+  .edit {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #ddd;
+    border: none;
+    cursor: pointer;
+  }
+
+  .edit.done {
+    background-color: #5cb85c;
+    color: #fff;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+  }
+
+
+  /* changes the text box */
+  .large-input {
+    max-width: 25px;
+    height: 20px; /* Adjust the height as desired */
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: #af5b4c;
+    font-size: large;
+    text-align: center;
+  }
+
+  .large-input::-webkit-inner-spin-button,
+  .large-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+  input::-webkit-inner-spin-button,
+  input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
