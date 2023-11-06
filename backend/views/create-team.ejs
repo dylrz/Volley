@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VolleyTracker</title>
+    <link rel="stylesheet" href="../css/mainstyles.css" />
+    <script src="mainpage.js" defer></script>
+  </head>
+  <body>
+    <h1>VolleyTracker</h1>
+    <div class="toolbar">
+      <ul>
+        <li><a href="#settings">Settings</a></li>
+        <li><a href="#help">Help</a></li>
+        <li><a href="/">Logout</a></li>
+      </ul>
+    </div>
+    <div class="container">
+      <div id="playerForm">
+        <form id="playerInfoForm" onsubmit="teamSubmit(event)">
+          <label for="teamName">Team Name</label>
+          <div class="input-field">
+            <input
+              type="text"
+              autocomplete="off"
+              id="teamname"
+              name="teamname"
+              placeholder="Guangdong Tigers"
+            />
+          </div>
+          <label for="league">League</label>
+          <div class="input-field">
+            <input
+              type="text"
+              autocomplete="off"
+              id="league"
+              name="league"
+              placeholder="CBA"
+            />
+          </div>
+          <label for="numPlayers">Roster Size</label>
+          <div class="input-field">
+            <input
+              type="number"
+              id="numplayers"
+              min="1"
+              max="12"
+              placeholder="12"
+              required
+            />
+          </div>
+        </form>
+        <div class="button-container">
+          <input
+            type="submit"
+            id="cancel-team-creation"
+            value="Cancel"
+            class="btn solid"
+          />
+          <input
+            type="submit"
+            id="continue-team-creation"
+            value="Next"
+            class="btn solid"
+          />
+        </div>
+      </div>
+    </div>
+    <script src="../css/mainpage.js" defer></script>
+  </body>
+</html>

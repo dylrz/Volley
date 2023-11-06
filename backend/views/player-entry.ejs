@@ -14,21 +14,26 @@
       <ul>
         <li><a href="#settings">Settings</a></li>
         <li><a href="#help">Help</a></li>
-        <li><a href="/logout">Logout</a></li>
-        <!-- ADD FUNCTIONALITY: Logout should not link directly to log out -->
+        <li><a href="/">Logout</a></li>
       </ul>
     </div>
     <div class="container">
       <div id="playerForm">
-        <h2>Hello <%= name %>!</h2>
-        <form id="playerInfoForm" onsubmit="createStatTables(event)">
-          <input
-            type="submit"
-            id="create-team"
-            value="Create Team"
-            class="btn solid"
-          />
-        </form>
+        <h2>[Player Name] [Number] will go here</h2>
+      </div>
+      <div class="button-container">
+        <input
+          type="submit"
+          id="back-team-creation"
+          value="Back"
+          class="btn solid"
+        />
+        <input
+          type="submit"
+          id="team-creation"
+          value="Next"
+          class="btn solid"
+        />
       </div>
     </div>
     <script src="../css/mainpage.js" defer></script>

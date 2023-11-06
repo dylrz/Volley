@@ -1,4 +1,5 @@
 secrets.env
 node-modules/
 imgs/
-shit.css
+/zzz/frontend
+zzz/

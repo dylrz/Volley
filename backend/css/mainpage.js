@@ -1,139 +1,102 @@
-function createStatTables(event) {
-  event.preventDefault(); // Prevent form submission
+function teamSubmit(event) {
+  event.preventDefault(); // Preventing the form from submitting traditionally
 
-  const numPlayersInput = document.getElementById('numPlayers');
-  const numPlayers = parseInt(numPlayersInput.value, 10);
+  var data = {
+    teamName: document.getElementById('teamname').value,
+    league: document.getElementById('league').value, // It seems you're using 'username' for league, which might be a typo.
+    numPlayers: document.getElementById('numplayers').value
+  };
 
-  // Clear existing content
-  const playerForm = document.getElementById('playerForm');
-  playerForm.innerHTML = '';
+  fetch('/create-team', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      window.location.href = '/player-entry'; // Redirect to the new page for entering players' details
+    } else {
+      // Handle errors here
+      console.error('Error:', data.error);
+    }
+  })
+  .catch((error) => {
+    // Possible network error or server isn't responding
+    console.error('Error:', error);
+  });
+}
 
-  // Create stat tables for each player
-  for (let i = 1; i <= numPlayers; i++) {
-    const playerStats = document.createElement('div'); // Define playerStats variable
-    playerStats.className = 'player-stats';
+// This function could be called when the form is submitted, for example
+function validateForm() {
+  var numPlayersInput = document.getElementById('numPlayers').value;
+  var numPlayers = Number(numPlayersInput);
 
-    const playerNameContainer = document.createElement('div');
-    playerNameContainer.className = 'player-name-container';
+  if (isNaN(numPlayers) || !Number.isInteger(numPlayers)) {
+    alert("Please enter a valid integer for the number of players.");
+    return false;
+  }
+  return true;
+}
 
-    const playerName = document.createElement('h2');
-    playerName.textContent = 'Player ' + i;
-    playerNameContainer.appendChild(playerName);
-
-    const nameInput = document.createElement('input');
-    nameInput.setAttribute('type', 'text');
-    nameInput.setAttribute('value', playerName.textContent);
-    nameInput.style.display = 'none';
-    playerNameContainer.appendChild(nameInput);
-
-    const editButton = document.createElement('button');
-    editButton.className = 'edit';
-    editButton.textContent = 'Edit';
-    playerNameContainer.appendChild(editButton);
-
-    playerStats.appendChild(playerNameContainer);
-
-    editButton.addEventListener('click', function () {
-      if (editButton.textContent === 'Edit') {
-        playerName.style.display = 'none';
-        nameInput.style.display = 'inline-block';
-        nameInput.focus();
-        editButton.textContent = 'Done';
-      } else {
-        playerName.textContent = nameInput.value;
-        playerName.style.display = 'inline-block';
-        nameInput.style.display = 'none';
-        editButton.textContent = 'Edit';
-        updateStatsTable(); // Call the table update function
-      }
+function initializeCreateTeamButton() {
+  var createTeamButton = document.getElementById('create-team');
+  if (createTeamButton) {
+    createTeamButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      // Make a request to the server route that will render your new view
+      window.location.href = '/create-team';
     });
-
-    // Create stat rows for each category
-    const stats = ['kills', 'attempts', 'attack Errors','digs', 'assists', 'service Aces', 'service Errors'];
-    for (const stat of stats) {
-      const statRow = document.createElement('div');
-      statRow.className = 'stat-row';
-
-      const label = document.createElement('label');
-      label.setAttribute('for', stat);
-      label.textContent = stat.charAt(0).toUpperCase() + stat.slice(1) + ':';
-      statRow.appendChild(label);
-
-      const inputGroup = document.createElement('div');
-      inputGroup.className = 'input-group';
-
-      // Text Box For Stat Numbers
-      const input = document.createElement('input');
-      input.setAttribute('type', 'number');
-      input.setAttribute('id', i + '-' + stat);
-      input.setAttribute('min', '0');
-      input.setAttribute('value', '0');
-      input.setAttribute('readonly', true);
-      input.className = 'large-input';
-      inputGroup.appendChild(input);
-
-      const buttonGroup = document.createElement('div');
-      buttonGroup.className = 'button-group';
-
-      const incrementButton = document.createElement('incrementbutton');
-      incrementButton.className = 'increment';
-      incrementButton.setAttribute('onclick', "incrementStat('" + i + '-' + stat + "')");
-      incrementButton.textContent = '+';
-      buttonGroup.appendChild(incrementButton);
-
-      const decrementButton = document.createElement('decrementbutton');
-      decrementButton.className = 'decrement';
-      decrementButton.setAttribute('onclick', "decrementStat('" + i + '-' + stat + "')");
-      decrementButton.textContent = '-';
-      buttonGroup.appendChild(decrementButton);
-
-      inputGroup.appendChild(buttonGroup);
-      statRow.appendChild(inputGroup);
-      playerStats.appendChild(statRow);
-    }
-
-    playerForm.appendChild(playerStats);
-  }
-
-  // Add reset and submit buttons
-  const buttonRow = document.createElement('div');
-  buttonRow.className = 'button-row';
-
-  const resetButton = document.createElement('button');
-  resetButton.setAttribute('id', 'resetButton');
-  resetButton.textContent = 'Reset';
-  resetButton.addEventListener('click', resetValues);
-  buttonRow.appendChild(resetButton);
-
-  const submitButton = document.createElement('button');
-  submitButton.setAttribute('id', 'submitButton');
-  submitButton.textContent = 'Submit';
-  buttonRow.appendChild(submitButton);
-
-  playerForm.appendChild(buttonRow);
-}
-
-function resetValues() {
-  const inputs = document.getElementsByTagName('input');
-
-  for (let i = 0; i < inputs.length; i++) {
-    if (inputs[i].type === 'number') {
-      inputs[i].value = 0;
-    }
-  }
-  updateStatsTable(); // Update the stats table after resetting the values
-}
-
-function incrementStat(stat) {
-  const input = document.getElementById(stat);
-  input.value = parseInt(input.value, 10) + 1;
-  updateStatsTable();
-}
-
-function decrementStat(stat) {
-  const input = document.getElementById(stat);
-  if (parseInt(input.value, 10) > 0) {
-    input.value = parseInt(input.value, 10) - 1;
-    updateStatsTable();
+  } else {
+    console.error("Can't find the button with ID 'teamcreate'.");
   }
 }
+// This will ensure the initializeCreateTeamButton function is called when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', initializeCreateTeamButton);
+
+
+function cancelCreateTeamButton() {
+  var cancelButton = document.getElementById('cancel-team-creation');
+  if (cancelButton) {
+    cancelButton.addEventListener('click', function(event) {
+      event.preventDefault();
+
+      window.location.href = '/main';
+    });
+  } else {
+    console.error("Can't find the button with ID 'cancel-team-creation'.");
+  }
+}
+document.addEventListener('DOMContentLoaded', cancelCreateTeamButton);
+
+
+function backCreateTeamButton() {
+  var nextButton = document.getElementById('back-team-creation');
+  if (nextButton) {
+    nextButton.addEventListener('click', function(event) {
+      event.preventDefault();
+
+      window.location.href = '/create-team';
+    });
+  } else {
+    console.error("Can't find the button with ID 'back-team-creation'.");
+  }
+}
+document.addEventListener('DOMContentLoaded', backCreateTeamButton);
+
+
+function continueCreateTeamButton() {
+  var nextButton = document.getElementById('continue-team-creation');
+  if (nextButton) {
+    nextButton.addEventListener('click', function(event) {
+      event.preventDefault();
+
+      window.location.href = '/player-entry';
+    });
+  } else {
+    console.error("Can't find the button with ID 'continue-team-creation'.");
+  }
+}
+document.addEventListener('DOMContentLoaded', continueCreateTeamButton);

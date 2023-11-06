@@ -7,14 +7,17 @@ const express = require("express"),
     passport = require("passport"),
     bodyParser = require("body-parser"),
     LocalStrategy = require("passport-local"),
-    passportLocalMongoose = require("passport-local-mongoose");
+    passportLocalMongoose = require("passport-local-mongoose"),
+    flash = require('connect-flash'),
+    utils = require('./utils');
 
-console.log(process.env)
 const User = require("./model/user");
 var app = express();
 
+// individual data
+// cookies
 app.use(require("express-session")({
-  secret: "Lick my sack!",
+  secret: process.env.MYSECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -24,6 +27,8 @@ app.use(require("express-session")({
   }
 }));
 
+// http headers ensuring sensitive data isn't saved indefinitely
+// has to fetch and render upon every request... maybe not good
 app.use((req, res, next) => {
   res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
   res.header('Expires', '-1');
@@ -31,9 +36,18 @@ app.use((req, res, next) => {
   next();
 });
 
+// allows for flash messages
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success');
+  res.locals.error_msg = req.flash('error');
+  res.locals.error = req.flash('error'); // Passport sets the 'error' flash message for failures
+  next();
+});
+
 app.use('/', express.static(path.join(__dirname)));
 
-const uri = process.env.MY_FUCKING_MONGODB_URI;
+const uri = process.env.MONGODB_URI;
 
 mongoose.connect(uri, {
 	useNewUrlParser: true,
@@ -65,25 +79,27 @@ app.get("/", function (req, res) {
 // Handling user signup
 app.post("/", async (req, res) => {
   try {
-    const {name, email, createusername, createpassword, createpasswordconfirm} = req.body;
-    
+    const {name, email, createusername} = req.body;
+    const createpassword = req.body.createpassword;
+    const createpasswordconfirm = req.body.createpasswordconfirm;
+
     if (createpassword !== createpasswordconfirm) {
       return res.render("login-register", {
-         error: "Password doesn't match", 
+         error: "Passwords do not match", 
          form: 'signup-form'
         });
     }
     else {
-      const user = await User.create({
-        name: req.body.name,
-        email: req.body.email,
-        username: req.body.createusername,
-        password: req.body.createpassword,
-        passwordconf: req.body.createpasswordconfirm
-        });
+      let newUser = new User ({
+        name: name,
+        email: email,
+        username: createusername
+      });
+
+      let registeredUser = await User.register(newUser, createpassword);
   
-      req.session.username = user.name;
-      res.redirect("/login");
+      req.session.username = registeredUser.name;
+      return res.redirect("/");
     }
   } catch (error) {
     console.error(error);
@@ -95,60 +111,95 @@ app.post("/", async (req, res) => {
 app.get("/login", function (req, res) {
     res.render("login");
 });
-  
-//Handling user login
-app.post("/login", async function(req, res){
-    try {
-        // check if the user exists
-        const user = await User.findOne({ username: req.body.username });
-        if (user) {
-          //check if password matches
-          const result = req.body.password === user.password;
-          if (result) {
-            req.session.username = user.name
-            res.redirect("/main");
-          } else {
-            res.render("login-register", { error: "Password doesn't match" });
-          }
-        } else {
-          // res.status(400).json({ error: "User doesn't exist" });
-          res.render("login-register", { error: "User doesn't exist" });
-        }
-      } catch (error) {
-        // res.status(400).json({ error });
-        res.render("login-register", { error: "An error occurred during login." });
+
+app.post("/login", function(req, res, next) {
+  passport.authenticate("local", function(err, user, info) {
+    if (err) {
+      console.error('Authentication error:');
+      return next(err); // this will result in a 500 error
+    }
+    // 'info' contains the feedback from the authentication strategy
+    if (!user) {
+      console.error('Login failed:', info.message);
+      return res.render("login-register", { error: info.message });
+    }
+    req.logIn(user, function(err) {
+      if (err) {
+        console.error('Error logging in:', err);
+        return next(err);
       }
+      req.session.username = utils.toTitleCase(user.name);
+      res.redirect("/main");
+    });
+  }) (req, res, next);
 });
   
 //Handling user logout 
-app.get("/logout", function (req, res) {
+app.get("/logout", function (req, res, next) {
   req.session.destroy(function (err) {
     if (err) {
         // handle the error case
         console.error('Failed to destroy session during logout.', err);
         return res.redirect('/main');
     } else {
-        req.logout()
-        res.clearCookie('connect.sid', {path: '/'})
+        req.logout(function(err) {
+          if (err) {return next(err);}
+        })
+        req.session = null;
+        res.clearCookie('connect.sid', { path: '/', httpOnly: true, secure: true, sameSite: 'strict' });
         res.redirect('/login-register');
     }
   });
 });
-  
+
 app.get('/main', (req, res) => {
+  const username = 'Guest'
   if (req.session.username) {
     res.render('main', { name: req.session.username});
-  } else {
+  } else if (username) {
+    res.render('main', { name: username});
+  }
+  else {
     res.redirect('/')
   }
 });
   
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();
-    res.redirect("/login");
+    res.redirect("/");
 }
+
+app.get('/create-team', (req, res) => {
+  res.render('create-team');
+});
+
+app.post('/create-team', async (req, res) => {
+  try {
+    const { teamName, league, numPlayers } = req.body;
+
+      const team = new Team({
+        teamName,
+        league,
+        numPlayers
+      });
+
+    await team.save();
+
+    // Send a successful response
+    res.json({ success: true });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, error: 'Internal server error' });
+  }
+});
+
+// Route to render the player's entry form
+app.get('/player-entry', (req, res) => {
+  res.render('player-entry'); // This view will contain the form to input players' details
+});
+
   
 var port = process.env.PORT || 5001;
 app.listen(port, function () {
-    console.log(`Server Has Started at ${port}`);
+    console.log(`Server Has Started at Port ${port}`);
 });
