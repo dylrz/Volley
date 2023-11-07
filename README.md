@@ -1,4 +1,5 @@
-# dylrz.github.io
-VolleyTracker
+# **VolleyTracker**
 
-Stat tracking software, built first as a web app.
+### [VolleyTracker Site](dylrz.github.io)
+
+Volleyball Stat Tracking Application

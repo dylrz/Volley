@@ -3,6 +3,7 @@ const path = require("path");
 require('dotenv').config();
 
 const express = require("express"),
+    session = require('express-session'),
     mongoose = require("mongoose"),
     passport = require("passport"),
     bodyParser = require("body-parser"),
@@ -16,7 +17,7 @@ var app = express();
 
 // individual data
 // cookies
-app.use(require("express-session")({
+app.use(session({
   secret: process.env.MYSECRET,
   resave: false,
   saveUninitialized: false,
@@ -26,6 +27,9 @@ app.use(require("express-session")({
     maxAge: 24 * 60 * 60 * 1000
   }
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // http headers ensuring sensitive data isn't saved indefinitely
 // has to fetch and render upon every request... maybe not good
@@ -59,9 +63,6 @@ mongoose.connect(uri, {
 app.set("view engine", "ejs");
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
@@ -136,19 +137,21 @@ app.post("/login", function(req, res, next) {
   
 //Handling user logout 
 app.get("/logout", function (req, res, next) {
-  req.session.destroy(function (err) {
+  req.logout(function(err) {
     if (err) {
-        // handle the error case
-        console.error('Failed to destroy session during logout.', err);
-        return res.redirect('/main');
-    } else {
-        req.logout(function(err) {
-          if (err) {return next(err);}
-        })
-        req.session = null;
-        res.clearCookie('connect.sid', { path: '/', httpOnly: true, secure: true, sameSite: 'strict' });
-        res.redirect('/login-register');
+      console.error('Logout error:', err);
+      return next(err);
     }
+    // Destroy the session only after ensuring the logout was successful
+    req.session.destroy(function (err) {
+      if (err) {
+        console.error('Failed to destroy session during logout.', err);
+        return next(err);
+      }
+      // Only after destroying the session clear the cookie
+      res.clearCookie('connect.sid', { path: '/', httpOnly: true, secure: 'auto', sameSite: 'strict' });
+      res.redirect('/');
+    });
   });
 });
 

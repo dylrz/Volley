@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const teamSchema = new Schema({
+    userID: String,
     teamName:  String, // String is shorthand for {type: String}
     league: String,
-    numPlayers: Number,
+    rosterSize: Number,
     players: [{ name: String, number: Number }]
 });
 
