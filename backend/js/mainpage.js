@@ -42,7 +42,7 @@ function validateForm() {
 }
 
 function initializeCreateTeamButton() {
-  var createTeamButton = document.getElementById('create-team');
+  var createTeamButton = document.getElementById('start-create-team');
   if (createTeamButton) {
     createTeamButton.addEventListener('click', function(event) {
       event.preventDefault();
@@ -89,14 +89,39 @@ document.addEventListener('DOMContentLoaded', backCreateTeamButton);
 
 function continueCreateTeamButton() {
   var nextButton = document.getElementById('continue-team-creation');
-  if (nextButton) {
+  var rosterSizeInput = document.getElementById('rosterSize')
+  var createTeamForm = document.getElementById('teamInfoForm'); // Assuming you have a form with this ID
+  
+  if (nextButton && rosterSizeInput && createTeamForm) {
     nextButton.addEventListener('click', function(event) {
       event.preventDefault();
+      var rosterSize = rosterSizeInput.value;
+      
+      if (!rosterSize) {
+        console.error('Roster size is not defined.');
+        return;
+      }
 
-      window.location.href = '/player-entry';
+      createTeamForm.action = '/create-team'; // Set the form's action to the /create-team route
+      createTeamForm.submit(); // Submit the form
     });
   } else {
     console.error("Can't find the button with ID 'continue-team-creation'.");
   }
 }
 document.addEventListener('DOMContentLoaded', continueCreateTeamButton);
+
+
+function finishCreateTeamButton() {
+  var nextButton = document.getElementById('finish-team-creation');
+  if (nextButton) {
+    nextButton.addEventListener('click', function(event) {
+      event.preventDefault();
+
+      window.location.href = '/main';
+    });
+  } else {
+    console.error("Can't find the button with ID 'finish-team-creation'.");
+  }
+}
+document.addEventListener('DOMContentLoaded', finishCreateTeamButton);

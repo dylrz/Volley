@@ -238,7 +238,7 @@ form.signup-form {
 .panel h3 {
   font-weight: 600;
   line-height: 1;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   text-shadow: 2px 2px 1px #a883c1;
 }
 
@@ -420,6 +420,13 @@ form.signup-form {
   .container.container.sign-up-mode .left-panel .image,
   .container.container.sign-up-mode .left-panel .content {
     transform: translateY(-250%);
+  }
+  
+  .panel h3 {
+    font-weight: 600;
+    line-height: 1;
+    font-size: 1.6rem;
+    text-shadow: 2px 2px 1px #a883c1;
   }
 
   .container.container.sign-up-mode .signin-signup {

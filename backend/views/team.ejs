@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VolleyTracker</title>
+    <link rel="stylesheet" href="../css/mainstyles.css" />
+    <script src="mainpage.js" defer></script>
+  </head>
+  <body>
+    <div>
+      <h1><%= team.teamName %></h1>
+      <h3 class="league-name"><%= team.league %></h3>
+      <!-- Display players and other team info -->
+      <div class="players-list">
+        <% if (team.players && team.players.length > 0) { %>
+        <ul>
+          <% team.players.forEach(function(player) { %>
+          <li>
+            #<%= player.playerNumber%> - <%= player.playerName %> - <%=
+            player.position %>
+          </li>
+          <% }) %>
+        </ul>
+        <% } else { %>
+        <p>No players found for this team.</p>
+        <% } %>
+      </div>
+      <button type="button" id="cancel-team-creation" class="btn solid">
+        Back
+      </button>
+    </div>
+    <script src="../js/mainpage.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,700&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body, input {
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+header {
+  background-color: #47407b;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.volleytracker {
+  color: #ffffff;
+  font-weight: 900;
+}
+
+body {
+    background-color: #a4aef3;
+}
+
+a {
+    align-items: right;
+}
+.container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #a4aef3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  font-size: 4rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+  margin-top: 20vh;
+  text-shadow: 2px 2px 1px #a883c1;
+  text-align: center;
+}
+
+.btn {
+  outline: none;
+  border-radius: 50px;
+  cursor: pointer;
+  background-color: #8477dd;
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 10px 0;
+  transition: .3s;
+}
+
+.btn:hover {
+  background-color: #4c4389;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }

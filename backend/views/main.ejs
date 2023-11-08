@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="../css/mainstyles.css" />
     <script src="mainpage.js" defer></script>
   </head>
+  <header id="header">
+    <h1 class="volleytracker">VolleyTracker</h1>
+  </header>
   <body>
-    <h1>VolleyTracker</h1>
     <div class="toolbar">
       <ul>
         <li><a href="#settings">Settings</a></li>
@@ -24,11 +26,25 @@
         <form id="playerInfoForm" onsubmit="createStatTables(event)">
           <input
             type="submit"
-            id="create-team"
+            id="start-create-team"
             value="Create Team"
             class="btn solid"
           />
         </form>
+        <div class="players-list">
+          <h2>Your Teams</h2>
+          <% if (teams && teams.length > 0) { %>
+          <ul>
+            <% teams.forEach(function(team) { %>
+            <li>
+              <a href="/team/<%= team._id %>"><%= team.teamName %></a>
+            </li>
+            <% }) %>
+          </ul>
+          <% } else { %>
+          <p>You do not have any teams... Create one above</p>
+          <% } %>
+        </div>
       </div>
     </div>
     <script src="../js/mainpage.js" defer></script>

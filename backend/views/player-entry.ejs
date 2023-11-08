@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VolleyTracker</title>
     <link rel="stylesheet" href="../css/mainstyles.css" />
-    <script src="mainpage.js" defer></script>
   </head>
+  <header id="header">
+    <h1 class="volleytracker" >VolleyTracker</h1>
+  </header>
   <body>
-    <h1>VolleyTracker</h1>
     <div class="toolbar">
       <ul>
         <li><a href="#settings">Settings</a></li>
@@ -18,20 +19,46 @@
       </ul>
     </div>
     <div class="container">
-      <div id="playerForm">
-        <h2>[Player Name] [Number] will go here</h2>
-      </div>
+      <form action="/create-team-finalize" method="POST">
+        <% for (let i = 0; i < rosterSize; i++) { %>
+          <div class="input-pair">
+            <label class="playerentry">Player <%= i + 1 %></label>
+            <div class="input-player-entry">
+              <input
+                type="text"
+                name="players[<%= i %>][playerName]"
+                placeholder="Player Name"
+                required
+              />
+            </div>
+            <div class="input-player-entry">
+              <input
+                type="text"
+                name="players[<%= i %>][playerNumber]"
+                placeholder="Player Number"
+                required
+              />
+            </div>
+              <select name="players[<%= i %>][position]" required>
+                <option value="" disabled selected>Select a Position</option>
+                <option value="Setter">Setter</option>
+                <option value="Outside">Outside</option>
+                <option value="Opposite">Opposite</option>
+                <option value="Middle">Middle</option>
+                <option value="Outside">Outside</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+        <% } %>
+
       <div class="button-container">
+        <button type="button" id="back-team-creation" class="btn solid">
+          Back
+        </button>
         <input
           type="submit"
-          id="back-team-creation"
-          value="Back"
-          class="btn solid"
-        />
-        <input
-          type="submit"
-          id="team-creation"
-          value="Next"
+          id="finish-team-creation"
+          value="Create Team"
           class="btn solid"
         />
       </div>

@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VolleyTracker</title>
     <link rel="stylesheet" href="../css/mainstyles.css" />
-    <script src="mainpage.js" defer></script>
   </head>
+  <header id="header">
+    <h1 class="volleytracker" >VolleyTracker</h1>
+  </header>
   <body>
-    <h1>VolleyTracker</h1>
     <div class="toolbar">
       <ul>
         <li><a href="#settings">Settings</a></li>
@@ -19,14 +20,14 @@
     </div>
     <div class="container">
       <div id="playerForm">
-        <form id="playerInfoForm" onsubmit="teamSubmit(event)">
+        <form id="teamInfoForm" method="post"">
           <label for="teamName">Team Name</label>
           <div class="input-field">
             <input
               type="text"
               autocomplete="off"
-              id="teamname"
-              name="teamname"
+              id="teamName"
+              name="teamName"
               placeholder="Guangdong Tigers"
             />
           </div>
@@ -44,21 +45,19 @@
           <div class="input-field">
             <input
               type="number"
-              id="numplayers"
+              id="rosterSize"
+              name="rosterSize"
               min="1"
-              max="12"
+              max="18"
               placeholder="12"
               required
             />
           </div>
         </form>
         <div class="button-container">
-          <input
-            type="submit"
-            id="cancel-team-creation"
-            value="Cancel"
-            class="btn solid"
-          />
+          <button type="button" id="cancel-team-creation" class="btn solid">
+            Cancel
+          </button>
           <input
             type="submit"
             id="continue-team-creation"
