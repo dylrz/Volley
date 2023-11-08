@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,700&display=swap');
 
-.header {
-  background-color: #47407b;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 body {
   font-family: 'Lato', sans-serif; /* Updated font-family */
   margin: 0;
@@ -32,28 +24,14 @@ h2 {
   text-shadow: 2px 2px 1px #a883c1; /* Updated text shadow */
 }
 
-.new-team-link p {
+h3 {
   text-align: center;
-  margin-bottom: 20px;
   font-size: 1.4rem;
   color: #ffffff; /* Updated color */
-  text-shadow: 2px 2px 1px #a883c1; /* Updated text shadow */
+  margin-left: 10px;
+  font-weight: bold;
 }
 
-h3 {
-  text-align: left;
-  font-size: 1.2rem;
-  color: #cacaca; /* Updated color */
-  margin-left: 10px;
-}
-
-.league-name {
-  text-align: center;
-  font-size: 1.6rem;
-  margin-top: -10px;
-  color: rgb(255, 255, 255);
-  margin-left: 10px;
-}
 label {
   margin-bottom: 6px;
   font-size: 1.2rem;
@@ -96,19 +74,6 @@ select:focus {
   color: #1f1f1f;
 }
 
-.playerentry {
-  margin-bottom: 6px;
-  font-size: 1.2rem;
-  color: #ffffff; /* Updated color */
-  text-shadow: 1px 2px 1px #a883c1; /* Updated text shadow */
-  margin-right: auto;
-  margin-left: auto;
-  width: 50%;
-  align-items: center;
-  justify-content: left;
-  display: flex;
-}
-
 a {
   text-align: center;
   font-size: 1.2rem;
@@ -132,6 +97,36 @@ a {
   height: auto;
 }
 
+.container h2 {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.container a {
+  font-size: 1.2rem;
+  color: #ffffff; /* Updated color */
+  margin-right: auto;
+  margin-left: auto;
+  width: 50%;
+  justify-content: center;
+  display: flex;
+  text-decoration: none;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.container p {
+  font-size: 1.2rem;
+  color: #ffffff; /* Updated color */
+  margin-right: auto;
+  margin-left: auto;
+  width: 50%;
+  justify-content: center;
+  display: flex;
+  text-decoration: none;
+  font-style: italic;
+  font-weight: 600;
+}
 .player-stats {
   margin-bottom: 30px;
 }
@@ -261,6 +256,11 @@ a {
 .toolbar {
   overflow: hidden;
   background-color: #8477dd;
+  display: flex;
+}
+
+.toolbar form {
+  margin-left: auto;
 }
 
 /* Toolbar list */
@@ -275,18 +275,6 @@ a {
 .toolbar li {
   float: left; /* Align items in a row */
   margin: 10px;
-}
-
-.players-list ul {
-  list-style-type: none; /* Remove bullet points */
-  margin: 0;
-  padding: 0;
-  overflow: hidden; /* Clear floats */
-}
-
-.players-list li {
-  color: #f0f0f0;
-  font-size: 1.2rem;
 }
 
 /* Links inside the toolbar */
@@ -310,4 +298,52 @@ a {
 /* Change color on hover */
 .toolbar a:hover {
   background-color: #6858D6; /* Light background */
+}
+
+.players-list ul {
+  list-style-type: none; /* Remove bullet points */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Clear floats */
+}
+
+.players-list li {
+  color: #f0f0f0;
+  font-size: 1.2rem;
+}
+
+.player-entry {
+  margin-bottom: 6px;
+  font-size: 1.2rem;
+  color: #ffffff; /* Updated color */
+  text-shadow: 1px 2px 1px #a883c1; /* Updated text shadow */
+  margin-right: auto;
+  margin-left: auto;
+  width: 50%;
+  align-items: center;
+  justify-content: left;
+  display: flex;
+}
+.league-name {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-top: -10px;
+  color: rgb(255, 255, 255);
+  margin-left: 10px;
+}
+
+.new-team-link p {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  color: #ffffff; /* Updated color */
+  text-shadow: 2px 2px 1px #a883c1; /* Updated text shadow */
+}
+
+.header {
+  background-color: #47407b;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
