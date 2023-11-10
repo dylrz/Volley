@@ -85,6 +85,7 @@ a {
   text-align: center;
   font-size: 1.2rem;
   color: #ffffff; /* Updated color */
+  margin-top: 100px;
   margin-right: auto;
   margin-left: auto;
   width: 15rem;
@@ -93,4 +94,105 @@ a {
   justify-content: center;
   display: flex;
   text-decoration: none;
+}
+
+@media (max-width: 1900px) {
+  .text {
+    font-size: 4rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+    margin-top: 20vh;
+    text-shadow: 2px 2px 1px #a883c1;
+    text-align: center;
+  }
+}
+
+@media (max-width: 1600px) {
+  .text {
+    font-size: 3.75rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+    margin-top: 20vh;
+    text-shadow: 2px 2px 1px #a883c1;
+    text-align: center;
+  }
+}
+
+@media (max-width: 1200px) {
+  .text {
+    font-size: 3.5rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+    margin-top: 20vh;
+    text-shadow: 2px 2px 1px #a883c1;
+    text-align: center;
+  }
+}
+
+
+@media (max-width: 900px) {
+  .text {
+    font-size: 3rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+    margin-top: 20vh;
+    text-shadow: 2px 2px 1px #a883c1;
+    text-align: center;
+  }
+}
+
+@media(max-width: 600px) {
+  .text {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+    margin-top: 20vh;
+    text-shadow: 2px 2px 1px #a883c1;
+    text-align: center;
+  }
+}
+
+@media(max-height: 500px) {
+  .text {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+    margin-top: 20vh;
+    text-shadow: 2px 2px 1px #a883c1;
+    text-align: center;
+  }
+
+  .button a {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #ffffff; /* Updated color */
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 15rem;
+    height: 3rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-decoration: none;
+  }
+  
+}
+
+@media(max-height: 600px) {
+
+  .button a {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #ffffff; /* Updated color */
+    margin-top: 40px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 15rem;
+    height: 3rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-decoration: none;
+  }
 }

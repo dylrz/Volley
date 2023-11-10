@@ -46,7 +46,6 @@ router.post('/create-team-finalize', async (req, res) => {
         console.error('Team information is not available in the session.');
         return res.status(400).send('Session information for team creation is missing.');
         }
-        console.log(teamInfo);
         
         // Initialize the team with the data that doesn't depend on the players
         const team = new Team({
@@ -107,6 +106,19 @@ router.get('/team/:teamId', async (req, res) => {
     } catch (error) {
         console.error("Failed to fetch the team details:", error);
         res.status(500).send("Error fetching team details");
+    }
+});
+
+router.delete('/delete-team/:teamId', async (req, res) => {
+    try {
+        const teamId = req.params.teamId;
+        // Perform the deletion using the team ID
+        await Team.findByIdAndDelete(teamId);
+        await Player.deleteMany({ team: teamId });
+        res.json({ message: 'Team deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting team:', error);
+        res.status(500).send('Internal Server Error');
     }
 });
 

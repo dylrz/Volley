@@ -87,6 +87,33 @@ a {
   text-decoration: none;
 }
 
+button {
+  width: 100px;
+  height: 20px;
+  font-size: 0.8rem;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  cursor: pointer;
+  background-color: #421C9C;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 10px 0;
+  transition: .3s;
+}
+
+button:hover {
+  background-color: #6858D6;
+}
+
+.team-items {
+  align-items: center; /* Centers items vertically */
+  padding: 10px 0; /* Optional: Adds some padding */
+  text-align: center; /* Center-aligns the content */
+  padding: 10px 0; /* Optional: Adds some padding */
+}
+
 .container {
   margin: 0 auto;
   background: linear-gradient(-80deg, #8477dd, #5e65b6);

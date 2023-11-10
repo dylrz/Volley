@@ -20,6 +20,9 @@
         <div class="signin-signup">
           <form action="/login" method="POST" class="signin-form" id="login-form">
             <h2 class="title">Sign In</h2>
+            <% if (typeof message !== 'undefined' && message) { %>
+              <div class="success-message"><%= message %></div>
+            <% } %>
             <% if (typeof error !== 'undefined' && error) { %>
               <div class="error-message"><%= error %></div>
             <% } %>
@@ -41,7 +44,7 @@
             </div>
           </form>
 
-          <form action="/" method="POST" class="signup-form" id="reg-form">
+          <form action="/login-register" method="POST" class="signup-form" id="reg-form">
             <h2 class="title">Sign Up</h2>
             <% if (typeof error !== 'undefined' && error) { %>
               <div class="error-message"><%= error %></div>

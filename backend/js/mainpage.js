@@ -57,71 +57,19 @@ function initializeCreateTeamButton() {
 document.addEventListener('DOMContentLoaded', initializeCreateTeamButton);
 
 
-function cancelCreateTeamButton() {
-  var cancelButton = document.getElementById('cancel-team-creation');
-  if (cancelButton) {
-    cancelButton.addEventListener('click', function(event) {
-      event.preventDefault();
-
-      window.location.href = '/main';
-    });
-  } else {
-    console.error("Can't find the button with ID 'cancel-team-creation'.");
-  }
+function deleteTeam(teamId) {
+  fetch(`/delete-team/${teamId}`, { method: 'DELETE' })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      })
+      .then(data => {
+          console.log('Team deleted:', data);
+          window.location.reload(); // Reload the page to update the list of teams
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      });
 }
-document.addEventListener('DOMContentLoaded', cancelCreateTeamButton);
-
-
-function backCreateTeamButton() {
-  var nextButton = document.getElementById('back-team-creation');
-  if (nextButton) {
-    nextButton.addEventListener('click', function(event) {
-      event.preventDefault();
-
-      window.location.href = '/create-team';
-    });
-  } else {
-    console.error("Can't find the button with ID 'back-team-creation'.");
-  }
-}
-document.addEventListener('DOMContentLoaded', backCreateTeamButton);
-
-
-function continueCreateTeamButton() {
-  var nextButton = document.getElementById('continue-team-creation');
-  var rosterSizeInput = document.getElementById('rosterSize')
-  var createTeamForm = document.getElementById('teamInfoForm'); // Assuming you have a form with this ID
-  
-  if (nextButton && rosterSizeInput && createTeamForm) {
-    nextButton.addEventListener('click', function(event) {
-      event.preventDefault();
-      var rosterSize = rosterSizeInput.value;
-      
-      if (!rosterSize) {
-        console.error('Roster size is not defined.');
-        return;
-      }
-
-      createTeamForm.action = '/create-team'; // Set the form's action to the /create-team route
-      createTeamForm.submit(); // Submit the form
-    });
-  } else {
-    console.error("Can't find the button with ID 'continue-team-creation'.");
-  }
-}
-document.addEventListener('DOMContentLoaded', continueCreateTeamButton);
-
-
-function finishCreateTeamButton() {
-  var nextButton = document.getElementById('finish-team-creation');
-  if (nextButton) {
-    nextButton.addEventListener('click', function(event) {
-      event.preventDefault();
-
-      window.location.href = '/main';
-    });
-  } else {
-    console.error("Can't find the button with ID 'finish-team-creation'.");
-  }
-}
-document.addEventListener('DOMContentLoaded', finishCreateTeamButton);

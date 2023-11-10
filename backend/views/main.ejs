@@ -15,7 +15,7 @@
     <div class="toolbar">
       <ul>
         <li><a href="#settings">Settings</a></li>
-        <li><a href="#help">Help</a></li>
+        <li><a href="/main-help">Help</a></li>
         <li><a href="/logout">Logout</a></li>
         <!-- ADD FUNCTIONALITY: Logout should not link directly to log out -->
       </ul>
@@ -36,8 +36,11 @@
           <% if (teams && teams.length > 0) { %>
           <ul>
             <% teams.forEach(function(team) { %>
-            <li>
+            <li class="team-items">
               <a href="/team/<%= team._id %>"><%= team.teamName %></a>
+              <button onclick="deleteTeam('<%= team._id %>')">
+                Delete Team
+              </button>
             </li>
             <% }) %>
           </ul>
@@ -46,6 +49,15 @@
           <% } %>
         </div>
       </div>
+    </div>
+    <div>
+      <input
+      type="submit"
+      id="start-create-team"
+      value="Create Match"
+      class="btn solid"
+    />
+  </form>
     </div>
     <script src="../js/mainpage.js" defer></script>
   </body>

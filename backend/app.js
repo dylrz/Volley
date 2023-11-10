@@ -20,6 +20,7 @@ const Player = require("./model/player");
 const mainRoutes = require('./routes/mainRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 const teamRoutes = require('./routes/teamRoutes');
+const helpRoutes = require('./routes/helpRoutes')
 
 var app = express();
 
@@ -70,6 +71,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use(mainRoutes)
 app.use(loginRoutes)
 app.use(teamRoutes)
+app.use(helpRoutes)
 
 var port = process.env.PORT || 5001;
 app.listen(port, function () {

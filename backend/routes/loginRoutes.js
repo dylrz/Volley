@@ -32,9 +32,9 @@ router.post("/login-register", async (req, res) => {
         });
 
         let registeredUser = await User.register(newUser, createpassword);
-
+        res.render('login', { message: 'Account created successfully. Please log in.' });
         req.session.username = registeredUser.name;
-        return res.redirect("/");
+        return res.redirect("/login-register");
         }
     } catch (error) {
         console.error(error);

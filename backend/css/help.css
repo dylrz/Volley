@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,700&display=swap');
+
+/* Basic styling for the help page */
+.help-container {
+  font-family: 'Lato', sans-serif;
+  background: linear-gradient(-80deg, #8477dd, #5e65b6);
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(38, 20, 54, 0.4);
+  margin: 0 auto; /* Adjust margin to 0 */
+  width: 100vw; /* Set width to 100% of the viewport width */
+  max-width: 90%; /* Ensure it doesn't exceed 100% of the viewport width */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.help-container h1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 4rem; /* Large screens */
+  margin-top: 0;
+}
+
+.help-container h2 {
+  font-weight: 600;
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.help-container h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.help-container p, .help-container a, .help-container label {
+  font-size: 1.2rem;
+  text-align: left;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+.help-container a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.help-container a:hover {
+  text-decoration: underline;
+}
+
+.help-container ul {
+  list-style-type: disc;
+  margin-left: 40px;
+}
+
+.help-container li {
+  margin-bottom: 10px;
+}
+
+/* Medium screens (tablets) */
+@media screen and (max-width: 768px) {
+  .help-container h1 {
+    font-size: 3rem;
+  }
+
+  .help-container h2 {
+    font-size: 2rem;
+  }
+
+  .help-container h3 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Small screens (mobile devices) */
+@media screen and (max-width: 600px) {
+  .help-container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .help-container h1 {
+    font-size: 2.5rem;
+  }
+
+  .help-container h2 {
+    font-size: 1.75rem;
+  }
+
+  .help-container h3 {
+    font-size: 1.4rem;
+  }
+
+  .help-container p, .help-container a, .help-container label {
+    font-size: 1rem;
+  }
+}
