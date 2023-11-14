@@ -11,17 +11,15 @@ router.get("/", function (req, res) {
 router.get('/main', async (req, res) => {
     const username = req.session.username || 'Guest';
   
-    // Assuming req.user is the authenticated user object added by Passport.js
     const userId = req.user ? req.user._id : null;
   
     try {
-      // Fetch all teams associated with the user
+      // fetch all teams associated with the user
       const teams = userId ? await Team.find({ user: userId }) : [];
   
-      // Render the main page with the teams
       res.render('main', {
         name: username,
-        teams: teams // Pass all the user's teams to the main page template
+        teams: teams
       });
     } catch (error) {
       console.error("Failed to fetch the user's teams:", error);

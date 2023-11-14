@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,700&display=swap');
 
 body {
-  font-family: 'Lato', sans-serif; /* Updated font-family */
+  font-family: 'Lato', sans-serif;
   margin: 0;
   padding: 20px;
-  background-color: #8477dd; /* Updated background color */
+  background-color: #8477dd;
+  appearance: none;
 }
 
 h1 {
@@ -12,22 +13,22 @@ h1 {
   margin-top: 0px;
   margin-bottom: 20px;
   font-size: 4rem;
-  color: #ffffff; /* Updated color */
-  text-shadow: 2px 2px 1px #a883c1; /* Updated text shadow */
+  color: #ffffff;
+  text-shadow: 2px 2px 1px #a883c1;
 }
 
 h2 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 2rem;
-  color: #ffffff; /* Updated color */
-  text-shadow: 2px 2px 1px #a883c1; /* Updated text shadow */
+  color: #ffffff;
+  text-shadow: 2px 2px 1px #a883c1;
 }
 
 h3 {
   text-align: center;
   font-size: 1.4rem;
-  color: #ffffff; /* Updated color */
+  color: #ffffff;
   margin-left: 10px;
   font-weight: bold;
 }
@@ -35,8 +36,8 @@ h3 {
 label {
   margin-bottom: 6px;
   font-size: 1.2rem;
-  color: #ffffff; /* Updated color */
-  text-shadow: 1px 2px 1px #a883c1; /* Updated text shadow */
+  color: #ffffff; 
+  text-shadow: 1px 2px 1px #a883c1;
   margin-right: auto;
   margin-left: auto;
   width: 50%;
@@ -46,38 +47,30 @@ label {
 }
 
 select {
-  width: 50%; /* Full width */
+  width: 50%;
   height: 50px;
   margin: 10px 0;
   margin-right: 15px;
-  display: inline-block; /* Make it inline-block */
-  border: 1px solid #ccc; /* Same border color as inputs */
-  border-radius: 20px; /* Rounded borders */
-  box-sizing: border-box; /* Box sizing to make padding behave */
-  -webkit-appearance: none; /* Remove default styling specific to WebKit/Blink */
-  -moz-appearance: none; /* Remove default styling specific to Mozilla Firefox */
-  appearance: none; /* Specified to none to remove default arrow in IE */
-  background-color: #f0f0f0; /* Background color */
-  font-family: inherit; /* Font family should match your input's font-family */
-  font-size: inherit; /* Font size should match your input's font-size */
+  display: inline-block;
+  border: 1px solid #ccc; 
+  border-radius: 20px; 
+  box-sizing: border-box; 
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  appearance: none; 
+  background-color: #f0f0f0;
+  font-family: inherit; 
+  font-size: inherit; 
 }
 
 select:focus {
-  border-color: #665ed0; /* Focus color */
-  background: none;
-  outline: none;
-  border: none;
-  width: 100%; /* Ensures input takes the full width of the column */
-  line-height: 1;
-  font-weight: 500;
-  font-size: 1.1rem;
-  color: #1f1f1f;
+  border-color: #665ed0; 
 }
 
 a {
   text-align: center;
   font-size: 1.2rem;
-  color: #ffffff; /* Updated color */
+  color: #ffffff; 
   margin-right: auto;
   margin-left: auto;
   width: 50%;
@@ -108,10 +101,10 @@ button:hover {
 }
 
 .team-items {
-  align-items: center; /* Centers items vertically */
-  padding: 10px 0; /* Optional: Adds some padding */
-  text-align: center; /* Center-aligns the content */
-  padding: 10px 0; /* Optional: Adds some padding */
+  align-items: center;
+  padding: 10px 0; 
+  text-align: center; 
+  padding: 10px 0; 
 }
 
 .container {
@@ -131,7 +124,7 @@ button:hover {
 
 .container a {
   font-size: 1.2rem;
-  color: #ffffff; /* Updated color */
+  color: #ffffff; 
   margin-right: auto;
   margin-left: auto;
   width: 50%;
@@ -144,7 +137,7 @@ button:hover {
 
 .container p {
   font-size: 1.2rem;
-  color: #ffffff; /* Updated color */
+  color: #ffffff;
   margin-right: auto;
   margin-left: auto;
   width: 50%;
@@ -154,6 +147,7 @@ button:hover {
   font-style: italic;
   font-weight: 600;
 }
+
 .player-stats {
   margin-bottom: 30px;
 }
@@ -171,10 +165,10 @@ button:hover {
 .stat-row input[type="number"] {
   flex-grow: 1;
   padding: 5px;
-  background-color: #f0f0f0; /* Updated input background color */
-  border-radius: 20px; /* Updated border-radius */
-  border: none; /* Removing border as per new style */
-  color: #1f1f1f; /* Updated color */
+  background-color: #f0f0f0; 
+  border-radius: 20px; 
+  border: none; 
+  color: #1f1f1f; 
 }
 
 .button-row {
@@ -245,14 +239,14 @@ button:hover {
 }
 
 .input-player-entry {
-  max-width: 100%; /* Sets maximum width, consider using 100% if you want it to be responsive */
+  max-width: 100%; 
   height: 50px;
   background-color: #f0f0f0;
   margin: 10px 0;
   margin-right: 15px;
   border-radius: 20px;
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Splits the div into two equal columns */
+  grid-template-columns: 1fr 1fr; 
   padding: 0 0.4rem;
 }
 
@@ -260,7 +254,7 @@ button:hover {
   background: none;
   outline: none;
   border: none;
-  width: 100%; /* Ensures input takes the full width of the column */
+  width: 100%;
   line-height: 1;
   font-weight: 500;
   font-size: 1.1rem;
@@ -292,19 +286,18 @@ button:hover {
 
 /* Toolbar list */
 .toolbar ul {
-  list-style-type: none; /* Remove bullet points */
+  list-style-type: none; 
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Clear floats */
+  overflow: hidden; 
 }
 
-/* Toolbar list items */
+
 .toolbar li {
-  float: left; /* Align items in a row */
+  float: left;
   margin: 10px;
 }
 
-/* Links inside the toolbar */
 .toolbar a {
   font-size: 0.8rem;
   border: none;
@@ -316,22 +309,22 @@ button:hover {
   font-weight: 500;
   margin: 10px 0;
   transition: .3s;
-  color: white; /* White text */
-  text-align: center; /* Centered text */
-  padding: 10px 20px; /* Some padding */
-  text-decoration: none; /* Remove underline */
+  color: white; 
+  text-align: center; 
+  padding: 10px 20px; 
+  text-decoration: none; 
 }
 
-/* Change color on hover */
+
 .toolbar a:hover {
-  background-color: #6858D6; /* Light background */
+  background-color: #6858D6; 
 }
 
 .players-list ul {
-  list-style-type: none; /* Remove bullet points */
+  list-style-type: none; 
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Clear floats */
+  overflow: hidden;
 }
 
 .players-list li {
@@ -342,8 +335,8 @@ button:hover {
 .player-entry {
   margin-bottom: 6px;
   font-size: 1.2rem;
-  color: #ffffff; /* Updated color */
-  text-shadow: 1px 2px 1px #a883c1; /* Updated text shadow */
+  color: #ffffff; 
+  text-shadow: 1px 2px 1px #a883c1;
   margin-right: auto;
   margin-left: auto;
   width: 50%;
@@ -351,6 +344,7 @@ button:hover {
   justify-content: left;
   display: flex;
 }
+
 .league-name {
   text-align: center;
   font-size: 1.6rem;
@@ -363,8 +357,8 @@ button:hover {
   text-align: center;
   margin-bottom: 20px;
   font-size: 1.4rem;
-  color: #ffffff; /* Updated color */
-  text-shadow: 2px 2px 1px #a883c1; /* Updated text shadow */
+  color: #ffffff; 
+  text-shadow: 2px 2px 1px #a883c1; 
 }
 
 .header {
@@ -373,4 +367,128 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.team-items {
+  align-items: center;
+}
+
+.team-taskbar {
+  position: relative;
+}
+
+.taskbar-content {
+  display: none;
+  position: absolute;
+  background-color: #6858D6;
+  z-index: 2;
+  width: 15%;
+  height: 40px;
+  top: 50%;
+  left: 50%;     
+  transform: translate(-50%, -50%);
+  border-radius: 30px;
+}
+
+.taskbar-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.taskbar-content a:hover { background-color: #ddd; }
+
+
+.team-items a {
+  display: inline;
+}
+
+.team-items a:hover {
+  color: rgb(187, 187, 187);
+  font-weight: 1000;
+}
+
+.delete-team-prompt {
+  display: none;
+}
+
+.delete-team-prompt.active {
+  display: block;
+}
+
+.player-edit {
+  text-align: center; 
+}
+
+.player-edit p {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin-right: auto;
+  margin-left: auto;
+  width: 50%;
+  justify-content: center;
+  display: flex;
+  text-decoration: none;
+}
+
+.player-edit input, .player-edit select {
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin: 5px 0; 
+  height: 33px;
+  width: 10%;
+  max-width: 300px;
+  box-sizing: border-box;
+  background-color: #ffffff; 
+  border: 1px solid #ccc; 
+  color: #333; 
+}
+
+.player-edit input[type=number] {
+  width: 80px; 
+  border-radius: 10px; 
+  padding: 5px 10px;
+  margin: 5px 0;
+  max-width: 200px; 
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+.player-edit input {
+  height: 30px;
+  outline: none;
+  border: none;
+  line-height: 1;
+  font-size: 1.1rem;
+  color: #000000;
+  text-align: center;
+}
+
+.player-edit input::placeholder {
+  color: #8a8a8a;
+  font-weight: 400;
+}
+
+.player-edit select {
+  text-align: center;
+  width: 90px;
+  cursor: pointer;
+  display: inline-block; 
+  box-sizing: border-box;
+  appearance: none;
+  background-color: #ffffff; 
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.player-edit select:focus {
+  border-color: #665ed0;
+}
+
+.player-edit button {
+  height: 30px;
+  justify-content: space-between;
 }

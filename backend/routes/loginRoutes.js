@@ -6,12 +6,12 @@ const User = require('../model/user');
 const Team = require('../model/team');
 const Player = require('../model/player');
   
-  // Showing register form
+  // showing main registration page
 router.get("/login-register", function (req, res) {
     res.render("login-register");
 });
 
-// Handling user signup
+// handling user signup
 router.post("/login-register", async (req, res) => {
     try {
         const {name, email, createusername} = req.body;
@@ -32,7 +32,7 @@ router.post("/login-register", async (req, res) => {
         });
 
         let registeredUser = await User.register(newUser, createpassword);
-        res.render('login', { message: 'Account created successfully. Please log in.' });
+        res.render('login-register', { message: 'Account created successfully. Please log in.' });
         req.session.username = registeredUser.name;
         return res.redirect("/login-register");
         }
@@ -65,20 +65,20 @@ router.post("/login", function(req, res, next) {
     }) (req, res, next);
 });
 
-//Handling user logout 
+//handling user logout 
 router.get("/logout", function (req, res, next) {
     req.logout(function(err) {
         if (err) {
         console.error('Logout error:', err);
         return next(err);
         }
-        // Destroy the session only after ensuring the logout was successful
+        // destroy the session after ensuring the logout was successful
         req.session.destroy(function (err) {
         if (err) {
             console.error('Failed to destroy session during logout.', err);
             return next(err);
         }
-        // Only after destroying the session clear the cookie
+        // only after destroying the session clear the cookie
         res.clearCookie('connect.sid', { path: '/', httpOnly: true, secure: 'auto', sameSite: 'strict' });
         res.redirect('/');
         });

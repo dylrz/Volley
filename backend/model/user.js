@@ -5,11 +5,11 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const UserSchema = new Schema({
     name: {
         type: String,
-        // required: true
+        required: true
     },
     email: {
         type: String,
-        // required: true,
+        required: true,
         unique: true
     },
     username: {
@@ -19,7 +19,7 @@ const UserSchema = new Schema({
     }
 });
 
-// Let passportLocalMongoose handle the hashing and salting of the password
+// passportLocalMongoose handles the hashing and salting of the password
 UserSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('User', UserSchema);

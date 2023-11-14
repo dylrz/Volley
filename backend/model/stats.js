@@ -4,13 +4,14 @@ const Player = require('./player');
 
 const statsSchema = new Schema({
     player: { type: Schema.Types.ObjectId, ref: 'Player'},
+
     attackAttempts: Number,
     totalKills:  Number,
-    attackOut: Number,
+    attackOutError: Number,
     attackBlocked: Number,
 
     passAttempts: Number,
-    passScores: Number,
+    passRatings: Number,
 
     serveAttempts: Number,
     serveAces: Number,

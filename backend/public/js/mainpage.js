@@ -1,9 +1,9 @@
 function teamSubmit(event) {
-  event.preventDefault(); // Preventing the form from submitting traditionally
+  event.preventDefault(); // preventing the form from submitting traditionally
 
   var data = {
     teamName: document.getElementById('teamname').value,
-    league: document.getElementById('league').value, // It seems you're using 'username' for league, which might be a typo.
+    league: document.getElementById('league').value,
     numPlayers: document.getElementById('numplayers').value
   };
 
@@ -17,19 +17,16 @@ function teamSubmit(event) {
   .then(response => response.json())
   .then(data => {
     if (data.success) {
-      window.location.href = '/player-entry'; // Redirect to the new page for entering players' details
+      window.location.href = '/player-entry';
     } else {
-      // Handle errors here
       console.error('Error:', data.error);
     }
   })
   .catch((error) => {
-    // Possible network error or server isn't responding
     console.error('Error:', error);
   });
 }
 
-// This function could be called when the form is submitted, for example
 function validateForm() {
   var numPlayersInput = document.getElementById('numPlayers').value;
   var numPlayers = Number(numPlayersInput);
@@ -46,19 +43,22 @@ function initializeCreateTeamButton() {
   if (createTeamButton) {
     createTeamButton.addEventListener('click', function(event) {
       event.preventDefault();
-      // Make a request to the server route that will render your new view
+
       window.location.href = '/create-team';
     });
   } else {
     console.error("Can't find the button with ID 'teamcreate'.");
   }
 }
-// This will ensure the initializeCreateTeamButton function is called when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', initializeCreateTeamButton);
 
 
 function deleteTeam(teamId) {
-  fetch(`/delete-team/${teamId}`, { method: 'DELETE' })
+
+  const isConfirmed = window.confirm("Are you sure you want to delete this team?");
+
+  if (isConfirmed) {
+    fetch(`/delete-team/${teamId}`, { method: 'DELETE' })
       .then(response => {
           if (!response.ok) {
               throw new Error('Network response was not ok');
@@ -67,9 +67,29 @@ function deleteTeam(teamId) {
       })
       .then(data => {
           console.log('Team deleted:', data);
-          window.location.reload(); // Reload the page to update the list of teams
+          window.location.reload(); // reload the page to update the list of teams
       })
       .catch(error => {
           console.error('Error:', error);
       });
+  } else {
+    console.log('Team deletion cancelled');
+  }
+}
+
+function toggleTaskbar(teamId) {
+  var taskbar = document.getElementById('taskbar-' + teamId);
+  if (taskbar.style.display === "block") {
+    taskbar.style.display = "none";
+    document.addEventListener('click', handleClickOutside, true);
+  } else {
+    taskbar.style.display = "block";
+    document.addEventListener('click', handleClickOutside, true);
+  }
+  function handleClickOutside(event) {
+    if (!taskbar.contains(event.target) && taskbar.style.display === "block") {
+      taskbar.style.display = "none";
+      document.removeEventListener('click', handleClickOutside, true);
+    }
+  }
 }

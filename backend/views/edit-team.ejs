@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VolleyTracker</title>
+    <link rel="stylesheet" href="../css/mainstyles.css" />
+    <script src="mainpage.js" defer></script>
+  </head>
+  <body>
+    <div class="player-edit">
+      <h1>Editing: <%= team.teamName %></h1>
+      <form action="/update-team/<%= team._id %>" method="post">
+        <input
+          type="text"
+          id="teamName"
+          name="teamName"
+          placeholder="<%= team.teamName %>"
+          value="<%= team.teamName %>"
+        />
+        <% team.players.forEach(function(player, index) { %>
+            <p>
+              #<%= player.playerNumber %> - <%= player.playerName %> - <%= player.position %>
+            </p>
+            <div>
+              <input
+                type="number"
+                name="playerNumbers[]"
+                placeholder="<%= player.playerNumber %>"
+                value="<%= player.playerNumber %>"
+              />
+              <input
+                type="text"
+                name="playerNames[]"
+                placeholder="<%= player.playerName %>"
+                value="<%= player.playerName %>"
+              />
+              <select name="playerPositions[]">
+                <option value="" disabled>Select a Position</option>
+                <option value="Setter" <%= player.position === 'Setter' ? 'selected' : '' %>>Setter</option>
+                <option value="Outside" <%= player.position === 'Outside' ? 'selected' : '' %>>Outside</option>
+                <option value="Opposite" <%= player.position === 'Opposite' ? 'selected' : '' %>>Opposite</option>
+                <option value="Middle" <%= player.position === 'Middle' ? 'selected' : '' %>>Middle</option>
+                <option value="Libero" <%= player.position === 'Libero' ? 'selected' : '' %>>Libero</option>
+                <option value="Other" <%= player.position === 'Other' ? 'selected' : '' %>>Other</option>
+              </select>
+              <input type="hidden" name="playerIds[]" value="<%= player._id %>" />
+            </div>
+          <% }) %>
+          <button type="button" id="cancel-team-creation">
+            Cancel
+          </button>
+        <button type="submit">Save</button>
+      </form>
+    </div>
+    <script src="../js/teamcreation.js" defer></script>
+  </body>
+</html>

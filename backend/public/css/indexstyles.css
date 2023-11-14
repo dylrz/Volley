@@ -13,7 +13,7 @@ body, input {
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-x: hidden;
 }
 
 header {
@@ -84,7 +84,7 @@ a {
 .button a {
   text-align: center;
   font-size: 1.2rem;
-  color: #ffffff; /* Updated color */
+  color: #ffffff;
   margin-top: 100px;
   margin-right: auto;
   margin-left: auto;

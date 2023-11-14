@@ -1,9 +1,9 @@
 function teamSubmit(event) {
-    event.preventDefault(); // Preventing the form from submitting traditionally
+    event.preventDefault();
   
     var data = {
       teamName: document.getElementById('teamname').value,
-      league: document.getElementById('league').value, // It seems you're using 'username' for league, which might be a typo.
+      league: document.getElementById('league').value,
       numPlayers: document.getElementById('numplayers').value
     };
   
@@ -17,19 +17,18 @@ function teamSubmit(event) {
     .then(response => response.json())
     .then(data => {
       if (data.success) {
-        window.location.href = '/player-entry'; // Redirect to the new page for entering players' details
+        window.location.href = '/player-entry'; 
       } else {
-        // Handle errors here
+
         console.error('Error:', data.error);
       }
     })
     .catch((error) => {
-      // Possible network error or server isn't responding
+
       console.error('Error:', error);
     });
   }
   
-  // This function could be called when the form is submitted, for example
   function validateForm() {
     var numPlayersInput = document.getElementById('numPlayers').value;
     var numPlayers = Number(numPlayersInput);
@@ -74,7 +73,7 @@ function teamSubmit(event) {
   function continueCreateTeamButton() {
     var nextButton = document.getElementById('continue-team-creation');
     var rosterSizeInput = document.getElementById('rosterSize')
-    var createTeamForm = document.getElementById('teamInfoForm'); // Assuming you have a form with this ID
+    var createTeamForm = document.getElementById('teamInfoForm');
     
     if (nextButton && rosterSizeInput && createTeamForm) {
       nextButton.addEventListener('click', function(event) {
@@ -86,8 +85,8 @@ function teamSubmit(event) {
           return;
         }
   
-        createTeamForm.action = '/create-team'; // Set the form's action to the /create-team route
-        createTeamForm.submit(); // Submit the form
+        createTeamForm.action = '/create-team';
+        createTeamForm.submit();
       });
     } else {
       console.error("Can't find the button with ID 'continue-team-creation'.");
@@ -102,10 +101,9 @@ function teamSubmit(event) {
       nextButton.addEventListener('click', function(event) {
         event.preventDefault();
   
-        // Assuming you have a function to collect the team data from the form
-        var teamData = collectTeamData(); // You need to implement this function
+        var teamData = collectTeamData();
   
-        // Make an AJAX request to the server
+        // AJAX request to the server
         fetch('/create-team-finalize', {
           method: 'POST',
           headers: {
@@ -121,7 +119,7 @@ function teamSubmit(event) {
         })
         .then(data => {
           console.log('Team created successfully:', data);
-          window.location.href = '/main'; // Redirect only after successful server response
+          window.location.href = '/main'; // redirects only after successful server response
         })
         .catch(error => {
           console.error('There has been a problem with your fetch operation:', error);

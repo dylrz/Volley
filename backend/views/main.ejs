@@ -17,7 +17,6 @@
         <li><a href="#settings">Settings</a></li>
         <li><a href="/main-help">Help</a></li>
         <li><a href="/logout">Logout</a></li>
-        <!-- ADD FUNCTIONALITY: Logout should not link directly to log out -->
       </ul>
       <form id="playerInfoForm" onsubmit="createStatTables(event)">
         <input
@@ -36,12 +35,18 @@
           <% if (teams && teams.length > 0) { %>
           <ul>
             <% teams.forEach(function(team) { %>
-            <li class="team-items">
+            <div class="team-items">
               <a href="/team/<%= team._id %>"><%= team.teamName %></a>
-              <button onclick="deleteTeam('<%= team._id %>')">
-                Delete Team
-              </button>
-            </li>
+              <div class="team-taskbar">
+                <button onclick="toggleTaskbar('<%= team._id %>')">Options</button>
+                <div id="taskbar-<%= team._id %>" class="taskbar-content">
+                  <button onclick="window.location.href='/edit-team/<%= team._id %>'">Edit Team</button>
+                  <button onclick="deleteTeam('<%= team._id %>')">
+                    Delete Team
+                  </button>
+                </div>
+              </div>
+            </div>
             <% }) %>
           </ul>
           <% } else { %>
@@ -53,7 +58,7 @@
     <div>
       <input
       type="submit"
-      id="start-create-team"
+      id="create-match"
       value="Create Match"
       class="btn solid"
     />

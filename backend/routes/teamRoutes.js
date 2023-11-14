@@ -25,12 +25,11 @@ router.post('/create-team', async (req, res) => {
     }
 });
 
-// Route to render the player's entry form
+
 router.get('/player-entry', (req, res) => {
     try {
-        const rosterSize = req.query.rosterSize || req.session.rosterSize; // Use session or query
-        res.render('player-entry', { rosterSize: rosterSize }); // This view will contain the form to input players' details
-        console.log(rosterSize)
+        const rosterSize = req.query.rosterSize || req.session.rosterSize; // use session or query
+        res.render('player-entry', { rosterSize: rosterSize });
     } catch (error) {
         console.log(error);
         req.flash('error', 'All fields are required. Please try again.');
@@ -40,50 +39,47 @@ router.get('/player-entry', (req, res) => {
 
 router.post('/create-team-finalize', async (req, res) => {
     try {
-        // Retrieve the team info
+        // retrieve team info
         const teamInfo = req.session.teamInfo;
         if (!teamInfo) {
         console.error('Team information is not available in the session.');
         return res.status(400).send('Session information for team creation is missing.');
         }
         
-        // Initialize the team with the data that doesn't depend on the players
         const team = new Team({
         teamName: teamInfo.teamName,
         league: teamInfo.league,
         rosterSize: teamInfo.rosterSize,
         user: teamInfo.user,
-        players: [] // Initially empty, we'll fill this in after creating the players
+        players: []
         });
 
         req.session.newTeamId = team._id;
 
-        // Placeholder for player IDs
+        // placeholder for player IDs
         const playerIds = [];
 
-        // Iterate over the player data, create and save each player, and collect their IDs
+        // create and save each player, and collect their IDs
         for (const playerData of req.body.players) {
         const player = new Player({
             playerName: playerData.playerName,
             playerNumber: playerData.playerNumber,
             position: playerData.position,
             playerStats: playerData.playerStats,
-            team: team._id // Set the reference to the team's ID
+            team: team._id
         });
-        const savedPlayer = await player.save(); // Save the player and get the result
-        playerIds.push(savedPlayer._id); // Push the player's ID into the array
+        const savedPlayer = await player.save(); 
+        playerIds.push(savedPlayer._id); // push the player's ID into the array
         }
 
-        // Now that all players are created and we have their IDs, set the team's players array
+        // set the team's players array
         team.players = playerIds;
         
-        // Finally, save the team with the player references
         await team.save();
 
         // Clean up the session
         delete req.session.teamInfo;
-        
-        // Redirect to a success page or send a successful response
+
         res.redirect('/main');
     } catch (error) {
         console.error('Failed to create team:', error);
@@ -94,14 +90,15 @@ router.post('/create-team-finalize', async (req, res) => {
 router.get('/team/:teamId', async (req, res) => {
     try {
         const teamId = req.params.teamId;
-        const team = await Team.findById(teamId).populate('players'); // Assuming your Team model has a 'players' field which is an array of ObjectIds referencing the 'Player' model
+        console.log("Received teamId:", teamId);
+        const team = await Team.findById(teamId).populate('players');
 
         if (!team) {
         return res.status(404).send("Team not found");
         }
 
         res.render('team', {
-        team: team // This will have all the team info, including the populated 'players' array
+        team: team // this will have all the team info, including the populated 'players' array
         });
     } catch (error) {
         console.error("Failed to fetch the team details:", error);
@@ -112,13 +109,55 @@ router.get('/team/:teamId', async (req, res) => {
 router.delete('/delete-team/:teamId', async (req, res) => {
     try {
         const teamId = req.params.teamId;
-        // Perform the deletion using the team ID
+        // delete using the team ID
         await Team.findByIdAndDelete(teamId);
         await Player.deleteMany({ team: teamId });
         res.json({ message: 'Team deleted successfully' });
     } catch (error) {
         console.error('Error deleting team:', error);
         res.status(500).send('Internal Server Error');
+    }
+});
+
+router.get('/edit-team/:teamId', async (req, res) => {
+    try {
+        const teamId = req.params.teamId;
+        console.log("Received teamId:", teamId);
+        const team = await Team.findById(teamId).populate('players');
+
+        if (!team) {
+            return res.status(404).send('Team not found')
+        }
+        res.render('edit-team', { team })
+    } catch (error) {
+        console.error(error)
+        res.status(500).send('Error loading the edit page')
+    }
+});
+
+router.post('/update-team/:teamId', async (req, res) => {
+    try {
+        const teamId = req.params.teamId;
+        const { teamName, playerNames, playerNumbers, playerPositions, playerIds } = req.body;
+
+        await Team.findByIdAndUpdate(teamId, { teamName });
+
+        if (Array.isArray(playerIds) && playerIds.length === playerNames.length &&
+            playerIds.length === playerNumbers.length && playerIds.length === playerPositions.length) {
+            // update each player
+            for (let i = 0; i < playerIds.length; i++) {
+                await Player.findByIdAndUpdate(playerIds[i], {
+                    playerNumber: playerNumbers[i],
+                    playerName: playerNames[i],
+                    position: playerPositions[i]
+                });
+            }
+        }
+
+        res.redirect('/main');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error updating the team');
     }
 });
 

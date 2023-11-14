@@ -13,7 +13,7 @@ header, body, input {
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-x: hidden;
 }
 
 header {
@@ -109,7 +109,6 @@ form.signup-form {
 
 .error-message {
   font-size: 1rem;
-  /* text-decoration: underline; */
   color: #ffffff;
   margin-bottom: 5px;
   text-shadow: 1px 2px 1px #ffa43c;
@@ -260,7 +259,6 @@ form.signup-form {
 }
 
 .btn.transparent:hover {
-  /* border: 26px solid #ffffff; */
   font-size: .95rem;
   text-shadow: 5px 5px 10px 10px rgba(255, 255, 255, 0.8);
 }
@@ -458,4 +456,11 @@ form.signup-form {
     bottom: 25%;
     left: 50%;
   }
+}
+
+.success-message {
+  font-size: 1rem;
+  color: #ffffff;
+  margin-bottom: 5px;
+  text-shadow: 1px 2px 1px #e7e7e7;
 }

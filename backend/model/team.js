@@ -4,7 +4,7 @@ const User = require('./user');
 const Player = require('./player');
 
 const teamSchema = new Schema({
-    teamName:  String, // String is shorthand for {type: String}
+    teamName:  String,
     league: String,
     rosterSize: Number,
     players: [{ type: Schema.Types.ObjectId, ref: 'Player' }],

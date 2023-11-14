@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const Team = require('./team');
 
 const playerSchema = new Schema({
-    playerName:  String, // String is shorthand for {type: String}
+    playerName:  String,
     playerNumber: Number,
     position: String,
     playerStats: [{ statsID: String }],

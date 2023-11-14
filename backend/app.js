@@ -1,4 +1,3 @@
-// App.js
 const path = require("path");
 require('dotenv').config();
 
@@ -24,7 +23,7 @@ const helpRoutes = require('./routes/helpRoutes')
 
 var app = express();
 
-app.use(favicon(path.join(__dirname, 'imgs', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'imgs', 'favicon.ico')));
 
 // individual data
 // cookies
@@ -41,6 +40,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// route to static files
+app.use('/', express.static(path.join(__dirname, 'public')));
+
 // allows for flash messages
 app.use(flash());
 app.use((req, res, next) => {
@@ -50,8 +52,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/', express.static(path.join(__dirname)));
-
+// establishing connection to mongodb
 const uri = process.env.MONGODB_URI;
 mongoose.connect(uri, {
 	useNewUrlParser: true,
@@ -60,6 +61,7 @@ mongoose.connect(uri, {
     console.log('Connected to Mongoose')
 });
 
+// ejs instead of html used
 app.set("view engine", "ejs");
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -68,6 +70,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//connected to all route files
 app.use(mainRoutes)
 app.use(loginRoutes)
 app.use(teamRoutes)
