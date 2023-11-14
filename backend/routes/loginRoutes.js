@@ -80,7 +80,7 @@ router.get("/logout", function (req, res, next) {
         }
         // only after destroying the session clear the cookie
         res.clearCookie('connect.sid', { path: '/', httpOnly: true, secure: 'auto', sameSite: 'strict' });
-        res.redirect('/');
+        res.redirect('/login-register');
         });
     });
 });

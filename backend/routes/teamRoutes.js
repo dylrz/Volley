@@ -16,7 +16,6 @@ router.post('/create-team', async (req, res) => {
         rosterSize: req.body.rosterSize,
         user: req.user._id
         };
-        console.log(req.session.teamInfo)
         res.redirect('/player-entry?rosterSize=' + req.body.rosterSize);
 
     } catch (error) {
@@ -87,10 +86,11 @@ router.post('/create-team-finalize', async (req, res) => {
     }
 });
 
+// this is called twice
+// creates innocuous error, but may need to be fixed in the future
 router.get('/team/:teamId', async (req, res) => {
     try {
         const teamId = req.params.teamId;
-        console.log("Received teamId:", teamId);
         const team = await Team.findById(teamId).populate('players');
 
         if (!team) {
@@ -101,7 +101,6 @@ router.get('/team/:teamId', async (req, res) => {
         team: team // this will have all the team info, including the populated 'players' array
         });
     } catch (error) {
-        console.error("Failed to fetch the team details:", error);
         res.status(500).send("Error fetching team details");
     }
 });
@@ -119,10 +118,11 @@ router.delete('/delete-team/:teamId', async (req, res) => {
     }
 });
 
+// this is called twice
+// creates innocuous error, but may need to be fixed in the future
 router.get('/edit-team/:teamId', async (req, res) => {
     try {
         const teamId = req.params.teamId;
-        console.log("Received teamId:", teamId);
         const team = await Team.findById(teamId).populate('players');
 
         if (!team) {
@@ -130,7 +130,6 @@ router.get('/edit-team/:teamId', async (req, res) => {
         }
         res.render('edit-team', { team })
     } catch (error) {
-        console.error(error)
         res.status(500).send('Error loading the edit page')
     }
 });
