@@ -1,7 +1,7 @@
 function teamSubmit(event) {
   event.preventDefault(); // preventing the form from submitting traditionally
 
-  var data = {
+  const data = {
     teamName: document.getElementById('teamname').value,
     league: document.getElementById('league').value,
     numPlayers: document.getElementById('numplayers').value
@@ -28,8 +28,8 @@ function teamSubmit(event) {
 }
 
 function validateForm() {
-  var numPlayersInput = document.getElementById('numPlayers').value;
-  var numPlayers = Number(numPlayersInput);
+  const numPlayersInput = document.getElementById('numPlayers').value;
+  const numPlayers = Number(numPlayersInput);
 
   if (isNaN(numPlayers) || !Number.isInteger(numPlayers)) {
     alert("Please enter a valid integer for the number of players.");
@@ -39,7 +39,8 @@ function validateForm() {
 }
 
 function initializeCreateTeamButton() {
-  var createTeamButton = document.getElementById('start-create-team');
+  const createTeamButton = document.getElementById('start-create-team');
+  
   if (createTeamButton) {
     createTeamButton.addEventListener('click', function(event) {
       event.preventDefault();
@@ -54,10 +55,9 @@ document.addEventListener('DOMContentLoaded', initializeCreateTeamButton);
 
 
 function deleteTeam(teamId) {
+  const confirm = window.confirm("Are you sure you want to delete this team?");
 
-  const isConfirmed = window.confirm("Are you sure you want to delete this team?");
-
-  if (isConfirmed) {
+  if (confirm) {
     fetch(`/delete-team/${teamId}`, { method: 'DELETE' })
       .then(response => {
           if (!response.ok) {
@@ -78,7 +78,7 @@ function deleteTeam(teamId) {
 }
 
 function toggleTaskbar(teamId) {
-  var taskbar = document.getElementById('taskbar-' + teamId);
+  const taskbar = document.getElementById('taskbar-' + teamId);
   if (taskbar.style.display === "block") {
     taskbar.style.display = "none";
     document.addEventListener('click', handleClickOutside, true);

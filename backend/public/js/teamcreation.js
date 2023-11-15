@@ -1,7 +1,7 @@
 function teamSubmit(event) {
     event.preventDefault();
   
-    var data = {
+    const data = {
       teamName: document.getElementById('teamname').value,
       league: document.getElementById('league').value,
       numPlayers: document.getElementById('numplayers').value
@@ -30,8 +30,8 @@ function teamSubmit(event) {
   }
   
   function validateForm() {
-    var numPlayersInput = document.getElementById('numPlayers').value;
-    var numPlayers = Number(numPlayersInput);
+    const numPlayersInput = document.getElementById('numPlayers').value;
+    const numPlayers = Number(numPlayersInput);
   
     if (isNaN(numPlayers) || !Number.isInteger(numPlayers)) {
       alert("Please enter a valid integer for the number of players.");
@@ -41,7 +41,7 @@ function teamSubmit(event) {
   }
   
   function cancelCreateTeamButton() {
-    var cancelButton = document.getElementById('cancel-team-creation');
+    const cancelButton = document.getElementById('cancel-team-creation');
     if (cancelButton) {
       cancelButton.addEventListener('click', function(event) {
         event.preventDefault();
@@ -56,7 +56,7 @@ function teamSubmit(event) {
   
   
   function backCreateTeamButton() {
-    var nextButton = document.getElementById('back-team-creation');
+    const nextButton = document.getElementById('back-team-creation');
     if (nextButton) {
       nextButton.addEventListener('click', function(event) {
         event.preventDefault();
@@ -71,14 +71,14 @@ function teamSubmit(event) {
   
   
   function continueCreateTeamButton() {
-    var nextButton = document.getElementById('continue-team-creation');
-    var rosterSizeInput = document.getElementById('rosterSize')
-    var createTeamForm = document.getElementById('teamInfoForm');
+    const nextButton = document.getElementById('continue-team-creation');
+    const rosterSizeInput = document.getElementById('rosterSize')
+    const createTeamForm = document.getElementById('teamInfoForm');
     
     if (nextButton && rosterSizeInput && createTeamForm) {
       nextButton.addEventListener('click', function(event) {
         event.preventDefault();
-        var rosterSize = rosterSizeInput.value;
+        const rosterSize = rosterSizeInput.value;
         
         if (!rosterSize) {
           console.error('Roster size is not defined.');
@@ -96,12 +96,12 @@ function teamSubmit(event) {
   
   
   function finishCreateTeamButton() {
-    var nextButton = document.getElementById('finish-team-creation');
+    const nextButton = document.getElementById('finish-team-creation');
     if (nextButton) {
       nextButton.addEventListener('click', function(event) {
         event.preventDefault();
   
-        var teamData = collectTeamData();
+        const teamData = collectTeamData();
   
         // AJAX request to the server
         fetch('/create-team-finalize', {

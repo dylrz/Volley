@@ -381,7 +381,8 @@ button:hover {
   position: absolute;
   background-color: #6858D6;
   z-index: 2;
-  width: 15%;
+  min-width: 250px;
+  width: 20%;
   height: 40px;
   top: 50%;
   left: 50%;     

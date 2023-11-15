@@ -21,7 +21,7 @@ const loginRoutes = require('./routes/loginRoutes');
 const teamRoutes = require('./routes/teamRoutes');
 const helpRoutes = require('./routes/helpRoutes')
 
-var app = express();
+const app = express();
 
 app.use(favicon(path.join(__dirname, 'public', 'imgs', 'favicon.ico')));
 
@@ -76,7 +76,7 @@ app.use(loginRoutes)
 app.use(teamRoutes)
 app.use(helpRoutes)
 
-var port = process.env.PORT || 5001;
+const port = process.env.PORT || 5001;
 app.listen(port, function () {
     console.log(`Server Has Started at Port ${port}`);
 });
