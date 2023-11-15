@@ -78,12 +78,7 @@ app.use(loginRoutes)
 app.use(teamRoutes)
 app.use(helpRoutes)
 
-// const port = process.env.PORT || 5001;
-// app.listen(port, function () {
-//     console.log(`Server Has Started at Port ${port}`);
-// });
-
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello Node.js\n');
-}).listen(8080, '0.0.0.0');
+const port = process.env.PORT || 8080;
+app.listen(port, function () {
+    console.log(`Server Has Started at Port ${port}`);
+});
