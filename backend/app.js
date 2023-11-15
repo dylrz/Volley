@@ -12,6 +12,8 @@ const express = require("express"),
     utils = require('./utils'),
     favicon = require('serve-favicon');
 
+const http = require('http');
+
 const User = require("./model/user");
 const Team = require("./model/team");
 const Player = require("./model/player");
@@ -76,7 +78,12 @@ app.use(loginRoutes)
 app.use(teamRoutes)
 app.use(helpRoutes)
 
-const port = process.env.PORT || 5001;
-app.listen(port, function () {
-    console.log(`Server Has Started at Port ${port}`);
-});
+// const port = process.env.PORT || 5001;
+// app.listen(port, function () {
+//     console.log(`Server Has Started at Port ${port}`);
+// });
+
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello Node.js\n');
+}).listen(80, '0.0.0.0');
