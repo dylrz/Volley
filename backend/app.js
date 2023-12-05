@@ -15,8 +15,6 @@ const express = require("express"),
 const http = require('http');
 
 const User = require("./model/user");
-const Team = require("./model/team");
-const Player = require("./model/player");
 
 const mainRoutes = require('./routes/mainRoutes');
 const loginRoutes = require('./routes/loginRoutes');
