@@ -181,9 +181,11 @@ router.get('/team/:teamId', async (req, res) => {
 router.delete('/delete-team/:teamId', async (req, res) => {
     try {
         const teamId = req.params.teamId;
-        console.log('deleting team')
+        console.log('Received DELETE request for teamId:', teamId);
         await Team.findByIdAndDelete(teamId);
+        console.log('1')
         await Player.deleteMany({ team: teamId });
+        console.log('here')
         res.status(200).send({ message: 'Team deleted successfully' });
     } catch (error) {
         console.error('Error deleting team:', error);
