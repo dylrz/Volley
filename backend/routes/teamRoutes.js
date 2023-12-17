@@ -39,7 +39,6 @@ router.get('/player-entry', (req, res) => {
 
 router.post('/create-team-finalize', async (req, res) => {
     try {
-        // Extract team info and player data directly from the request body
         const { finalTeamInfo, players } = req.body;
         if (!finalTeamInfo) {
             console.error('Team information is not provided.');
@@ -107,8 +106,6 @@ router.get('/team/:teamId', async (req, res) => {
     }
 });
 
-
-
 router.delete('/delete-team/:teamId', async (req, res) => {
     try {
         const teamId = req.params.teamId;
@@ -143,20 +140,41 @@ router.get('/edit-team/:teamId', async (req, res) => {
 router.post('/update-team/:teamId', async (req, res) => {
     try {
         const teamId = req.params.teamId;
-        const { teamName, playerNames, playerNumbers, playerPositions, playerIds } = req.body;
+        const { teamName, playerData } = req.body;
 
         await Team.findByIdAndUpdate(teamId, { teamName });
 
-        if (Array.isArray(playerIds) && playerIds.length === playerNames.length &&
-            playerIds.length === playerNumbers.length && playerIds.length === playerPositions.length) {
-            // update each player
-            for (let i = 0; i < playerIds.length; i++) {
-                await Player.findByIdAndUpdate(playerIds[i], {
-                    playerNumber: playerNumbers[i],
-                    playerName: playerNames[i],
-                    position: playerPositions[i]
-                });
+        if (Array.isArray(playerData) && playerData.length > 0) {
+            for (const player of playerData) {
+                if (player._id) {
+                    await Player.findByIdAndUpdate(player._id, {
+                        playerName: player.playerName,
+                        playerNumber: player.playerNumber,
+                        position: player.position,
+                        playerStats: player.playerStats,
+                        team: teamId
+                    });
+                }
             }
+        }
+
+        const newPlayersData = [];
+        if (Array.isArray(playerData)) {
+            for (const player of playerData) {
+                const newPlayerData = {
+                    playerName: player.playerName,
+                    playerNumber: player.playerNumber,
+                    position: player.position,
+                    playerStats: player.playerStats,
+                    team: teamId
+                };
+                newPlayersData.push(newPlayerData);
+            }
+        }
+        
+        // Create new players
+        if (newPlayersData.length > 0) {
+            await Player.create(newPlayersData);
         }
 
         res.redirect('/main');

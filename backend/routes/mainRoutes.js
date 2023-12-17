@@ -14,7 +14,7 @@ router.get('/main', async (req, res) => {
 
   try {
     const teams = userId ? await Team.find({ user: userId }) : [];
-    res.json({ name: username, teams: teams }); // Send data as JSON
+    res.json({ name: username, teams: teams });
   } catch (error) {
     console.error("Failed to fetch the user's teams:", error);
     res.status(500).json({ error: "Error fetching teams information" });

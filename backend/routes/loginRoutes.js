@@ -6,7 +6,6 @@ const User = require('../model/user');
 const Team = require('../model/team');
 const Player = require('../model/player');
 
-  // showing main registration page
 router.get("/login-register", function (req, res) {
     res.render("login-register");
 });
@@ -60,8 +59,6 @@ router.post("/login", function(req, res, next) {
     }) (req, res, next);
 });
 
-
-//handling user logout 
 router.get("/logout", function (req, res, next) {
     req.logout(function(err) {
         if (err) {

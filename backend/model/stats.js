@@ -4,7 +4,7 @@ const Player = require('./player');
 
 const statsSchema = new Schema({
     player: { type: Schema.Types.ObjectId, ref: 'Player'},
-
+    
     attackAttempts: Number,
     totalKills:  Number,
     attackOutError: Number,
