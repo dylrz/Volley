@@ -1,15 +1,15 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const User = require('../model/user')
-const Team = require('../model/team');
-const Player = require('../model/player');
+const User = require("../model/user");
+const Team = require("../model/team");
+const Player = require("../model/player");
 
 router.get("/", function (req, res) {
-    res.render("index")
+  res.render("index");
 });
 
-router.get('/main', async (req, res) => {
-  const username = req.session.username || 'Guest';
+router.get("/main", async (req, res) => {
+  const username = req.session.username || "Guest";
   const userId = req.user ? req.user._id : null;
 
   try {
@@ -21,5 +21,4 @@ router.get('/main', async (req, res) => {
   }
 });
 
-
-  module.exports = router;
+module.exports = router;
