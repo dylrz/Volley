@@ -10,7 +10,6 @@ const Match = require("../model/match");
 router.post("/create-tournament", async (req, res) => {
   const { tournamentName, tournamentLocation, startDate, endDate, userId } =
     req.body;
-  console.log(userId);
   try {
     const tournament = new Tournament({
       tournamentName,

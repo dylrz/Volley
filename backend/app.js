@@ -1,5 +1,5 @@
 const path = require("path");
-require("dotenv").config();
+require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 const express = require("express"),
   session = require("express-session"),
@@ -28,8 +28,6 @@ app.use(favicon(path.join(__dirname, "public", "imgs", "favicon.ico")));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// individual data
-// cookies
 app.use(
   session({
     secret: process.env.MYSECRET,
