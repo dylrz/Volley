@@ -30,7 +30,11 @@ router.post("/create-tournament", async (req, res) => {
 
 router.get("/tournaments", async (req, res) => {
   try {
-    const tournaments = await Tournament.find({});
+    const userId = req.query.userId; // Get userId from query parameters
+    if (!userId) {
+      return res.status(400).json({ error: "UserId is required" });
+    }
+    const tournaments = await Tournament.find({ user: userId });
     res.json(tournaments);
   } catch (error) {
     res.status(500).json({ error: "Error fetching tournaments" });
@@ -65,7 +69,6 @@ router.get("/match/:matchId", async (req, res) => {
   try {
     const matchId = req.params.matchId;
     const match = await Match.findById(matchId);
-
     if (!match) {
       return res.status(404).json({ message: "Match not found" });
     }
@@ -78,7 +81,15 @@ router.get("/match/:matchId", async (req, res) => {
 
 router.get("/matches", async (req, res) => {
   try {
-    const matches = await Match.find({});
+    const userId = req.query.userId;
+    if (!userId) {
+      return res.status(400).json({ error: "UserId is required" });
+    }
+    console.log(userId);
+    const tournaments = await Tournament.find({ user: userId }).select("_id");
+    const tournamentIds = tournaments.map((t) => t._id);
+    // Then, find matches for these tournaments
+    const matches = await Match.find({ tournament: { $in: tournamentIds } });
     res.json(matches);
   } catch (error) {
     res.status(500).json({ error: "Error fetching matches" });

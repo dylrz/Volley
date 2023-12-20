@@ -21,4 +21,18 @@ router.get("/main", async (req, res) => {
   }
 });
 
+router.delete("/delete-account/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    console.log("userid", userId);
+
+    await User.findByIdAndDelete(userId);
+
+    res.status(200).send("Account successfully deleted");
+  } catch (error) {
+    console.error("Error deleting account:", error);
+    res.status(500).send("Error deleting account");
+  }
+});
+
 module.exports = router;
