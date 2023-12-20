@@ -1,13 +1,14 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Team = require('./team');
+const Team = require("./team");
+const Stats = require("./stats");
 
 const playerSchema = new Schema({
-    playerName:  String,
-    playerNumber: Number,
-    position: String,
-    playerStats: [{ statsID: String }],
-    team: { type: Schema.Types.ObjectId, ref: 'Team'}
+  playerName: String,
+  playerNumber: Number,
+  position: String,
+  playerStats: [{ type: Schema.Types.ObjectId, ref: "PlayerStats" }], // Referencing PlayerStats
+  team: { type: Schema.Types.ObjectId, ref: "Team" },
 });
 
-module.exports = mongoose.model('Player', playerSchema);
+module.exports = mongoose.model("Player", playerSchema);

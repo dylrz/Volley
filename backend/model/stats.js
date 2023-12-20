@@ -1,34 +1,36 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Player = require('./player');
+const Player = require("./player");
 
 const statsSchema = new Schema({
-    player: { type: Schema.Types.ObjectId, ref: 'Player'},
-    
-    attackAttempts: Number,
-    totalKills:  Number,
-    attackOutError: Number,
-    attackBlocked: Number,
+  player: { type: Schema.Types.ObjectId, ref: "Player" },
+  match: { type: Schema.Types.ObjectId, ref: "Match" },
+  tournament: { type: Schema.Types.ObjectId, ref: "Tournament" },
 
-    passAttempts: Number,
-    passRatings: Number,
+  attackAttempts: Number,
+  totalKills: Number,
+  attackOutError: Number,
+  attackBlocked: Number,
 
-    serveAttempts: Number,
-    serveAces: Number,
-    serveErrors: Number,
+  passAttempts: Number,
+  passRatings: Number,
 
-    blockAttempts: Number,
-    blockStuffs: Number,
-    blockTouches: Number,
+  serveAttempts: Number,
+  serveAces: Number,
+  serveErrors: Number,
 
-    digAttempts: Number,
-    digsMade: Number,
+  blockAttempts: Number,
+  blockStuffs: Number,
+  blockTouches: Number,
 
-    setAttempts: Number,
-    setAssists: Number,
-    ballHandlingErrors: Number,
+  digAttempts: Number,
+  digsMade: Number,
+
+  setAttempts: Number,
+  setAssists: Number,
+  ballHandlingErrors: Number,
 });
 
-const Stats = mongoose.model('Stats', statsSchema);
+const Stats = mongoose.model("Stats", statsSchema);
 
-module.exports = Stats
+module.exports = Stats;

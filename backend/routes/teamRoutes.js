@@ -92,13 +92,14 @@ router.post("/create-team-finalize", async (req, res) => {
 });
 
 router.get("/team/:teamId", async (req, res) => {
-  try {
-    const teamId = req.params.teamId;
-    const team = await Team.findById(teamId).populate("players");
+  const teamId = req.params.teamId;
 
-    if (!mongoose.Types.ObjectId.isValid(teamId)) {
-      return res.status(400).send("Invalid team ID");
-    }
+  if (!mongoose.Types.ObjectId.isValid(teamId)) {
+    return res.status(400).send("Invalid team ID");
+  }
+
+  try {
+    const team = await Team.findById(teamId).populate("players");
 
     if (!team) {
       return res.status(404).send("Team not found");
@@ -149,40 +150,36 @@ router.post("/update-team/:teamId", async (req, res) => {
 
     await Team.findByIdAndUpdate(teamId, { teamName });
 
-    if (Array.isArray(playerData) && playerData.length > 0) {
-      for (const player of playerData) {
-        if (player._id) {
-          await Player.findByIdAndUpdate(player._id, {
-            playerName: player.playerName,
-            playerNumber: player.playerNumber,
-            position: player.position,
-            playerStats: player.playerStats,
-            team: teamId,
-          });
-        }
-      }
-    }
+    const updates = playerData
+      .filter((player) => player._id)
+      .map((player) => {
+        return Player.findByIdAndUpdate(player._id, {
+          playerName: player.playerName,
+          playerNumber: player.playerNumber,
+          position: player.position,
+          playerStats: player.playerStats,
+          team: teamId,
+        });
+      });
 
-    const newPlayersData = [];
-    if (Array.isArray(playerData)) {
-      for (const player of playerData) {
-        const newPlayerData = {
+    const newPlayers = playerData
+      .filter((player) => !player._id)
+      .map((player) => {
+        return {
           playerName: player.playerName,
           playerNumber: player.playerNumber,
           position: player.position,
           playerStats: player.playerStats,
           team: teamId,
         };
-        newPlayersData.push(newPlayerData);
-      }
+      });
+
+    await Promise.all(updates);
+    if (newPlayers.length > 0) {
+      await Player.create(newPlayers);
     }
 
-    // Create new players
-    if (newPlayersData.length > 0) {
-      await Player.create(newPlayersData);
-    }
-
-    res.redirect("/main");
+    res.status(200).send("Team updated successfully");
   } catch (error) {
     console.error(error);
     res.status(500).send("Error updating the team");
