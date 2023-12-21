@@ -124,8 +124,17 @@ router.delete("/delete-team/:teamId", async (req, res) => {
   }
 });
 
-// this is called twice
-// creates innocuous error, but may need to be fixed in the future
+router.delete("/delete-player/:playerId", async (req, res) => {
+  try {
+    const playerId = req.params.playerId;
+    await Player.findByIdAndDelete(playerId);
+    res.status(200).send({ message: "Player deleted successfully" });
+  } catch (error) {
+    console.error("error deleting player: ", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 router.get("/edit-team/:teamId", async (req, res) => {
   try {
     const teamId = req.params.teamId;
@@ -147,38 +156,33 @@ router.post("/update-team/:teamId", async (req, res) => {
 
     await Team.findByIdAndUpdate(teamId, { teamName });
 
-    const updates = playerData
-      .filter((player) => player._id)
-      .map((player) => {
-        return Player.findByIdAndUpdate(player._id, {
-          playerName: player.playerName,
-          playerNumber: player.playerNumber,
-          position: player.position,
-          playerStats: player.playerStats,
-          team: teamId,
-        });
-      });
+    let playerIds = [];
 
-    const newPlayers = playerData
-      .filter((player) => !player._id)
-      .map((player) => {
-        return {
-          playerName: player.playerName,
-          playerNumber: player.playerNumber,
-          position: player.position,
-          playerStats: player.playerStats,
-          team: teamId,
-        };
-      });
+    const updates = playerData.map((player) => {
+      if (player._id) {
+        // Update existing player
+        playerIds.push(player._id);
+        return Player.findByIdAndUpdate(player._id, player, { new: true });
+      } else {
+        // Add new player
+        const newPlayer = new Player({ ...player, team: teamId });
+        playerIds.push(newPlayer._id); // Add new player ID to the array
+        return newPlayer.save();
+      }
+    });
 
     await Promise.all(updates);
-    if (newPlayers.length > 0) {
-      await Player.create(newPlayers);
-    }
 
-    res.status(200).send("Team updated successfully");
+    // Update the team with the new team name and player array
+    const updatedTeam = await Team.findByIdAndUpdate(
+      teamId,
+      { teamName, players: playerIds },
+      { new: true }
+    ).populate("players");
+
+    res.status(200).json({ team: updatedTeam });
   } catch (error) {
-    console.error(error);
+    console.error("Error updating the team:", error);
     res.status(500).send("Error updating the team");
   }
 });

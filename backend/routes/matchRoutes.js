@@ -30,7 +30,7 @@ router.post("/create-tournament", async (req, res) => {
 
 router.get("/tournaments", async (req, res) => {
   try {
-    const userId = req.query.userId; // Get userId from query parameters
+    const userId = req.query.userId;
     if (!userId) {
       return res.status(400).json({ error: "UserId is required" });
     }
@@ -50,7 +50,7 @@ router.post("/create-match", async (req, res) => {
       dateTime: new Date(dateTime),
       matchScore: {
         teamScore: 0, // Default score
-        opponentScore: 0, // Default score
+        opponentScore: 0,
       },
       tournament: tournamentId,
       team: teamId,
@@ -85,10 +85,9 @@ router.get("/matches", async (req, res) => {
     if (!userId) {
       return res.status(400).json({ error: "UserId is required" });
     }
-    console.log(userId);
     const tournaments = await Tournament.find({ user: userId }).select("_id");
     const tournamentIds = tournaments.map((t) => t._id);
-    // Then, find matches for these tournaments
+
     const matches = await Match.find({ tournament: { $in: tournamentIds } });
     res.json(matches);
   } catch (error) {

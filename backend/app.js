@@ -32,7 +32,7 @@ app.use(
   session({
     secret: process.env.MYSECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
@@ -46,12 +46,12 @@ app.use(passport.session());
 // route to static files
 app.use("/", express.static(path.join(__dirname, "public")));
 
-// allows for flash messages
+// allows flash messages
 app.use(flash());
 app.use((req, res, next) => {
   res.locals.success_msg = req.flash("success");
   res.locals.error_msg = req.flash("error");
-  res.locals.error = req.flash("error"); // Passport sets the 'error' flash message for failures
+  res.locals.error = req.flash("error");
   next();
 });
 

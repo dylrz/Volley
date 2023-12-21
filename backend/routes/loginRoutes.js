@@ -46,22 +46,22 @@ router.post("/login", function (req, res, next) {
   passport.authenticate("local", function (err, user, info) {
     if (err) {
       console.error("Authentication error:");
-      // Return a JSON response indicating an error
+
       return res.status(500).json({ error: "Internal server error" });
     }
-    // 'info' contains the feedback from the authentication strategy
+
     if (!user) {
       console.error("Login failed:", info.message);
-      // Return a JSON response indicating login failure
+
       return res.status(401).json({ error: info.message });
     }
     req.logIn(user, function (err) {
       if (err) {
         console.error("Error logging in:", err);
-        // Return a JSON response indicating an error
         return res.status(500).json({ error: "Error logging in" });
       }
-      req.session.username = utils.toTitleCase(user.name);
+      req.session.name = user.name;
+      req.session.username = user.username;
       req.session.userId = user._id;
       res.status(200).json({
         message: "Login successful",
@@ -78,13 +78,11 @@ router.get("/logout", function (req, res, next) {
       console.error("Logout error:", err);
       return next(err);
     }
-    // destroy the session after ensuring the logout was successful
     req.session.destroy(function (err) {
       if (err) {
         console.error("Failed to destroy session during logout.", err);
         return next(err);
       }
-      // only after destroying the session clear the cookie
       res.clearCookie("connect.sid", {
         path: "/",
         httpOnly: true,
