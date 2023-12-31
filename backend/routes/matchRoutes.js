@@ -6,6 +6,7 @@ const Team = require("../model/team");
 const Player = require("../model/player");
 const Tournament = require("../model/tournament");
 const Match = require("../model/match");
+const MatchSet = require("../model/set");
 
 router.post("/create-tournament", async (req, res) => {
   const { tournamentName, tournamentLocation, startDate, endDate, userId } =
@@ -49,7 +50,7 @@ router.post("/create-match", async (req, res) => {
       opponentName,
       dateTime: new Date(dateTime),
       matchScore: {
-        teamScore: 0, // Default score
+        teamScore: 0,
         opponentScore: 0,
       },
       tournament: tournamentId,
@@ -92,6 +93,27 @@ router.get("/matches", async (req, res) => {
     res.json(matches);
   } catch (error) {
     res.status(500).json({ error: "Error fetching matches" });
+  }
+});
+
+router.get("/match/:matchId/sets", async (req, res) => {
+  try {
+    const matchId = req.params.matchId;
+    const sets = await MatchSet.find({ match: matchId }).populate("lineup");
+    res.json(sets);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+router.post("/create-set", async (req, res) => {
+  try {
+    const newSet = new MatchSet(req.body);
+    await newSet.save();
+    res.status(201).send(newSet);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
   }
 });
 

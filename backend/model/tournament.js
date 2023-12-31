@@ -11,7 +11,6 @@ const tournamentSchema = new Schema({
   startDate: Date,
   endDate: Date,
   matches: { type: Schema.Types.ObjectId, ref: "Match" },
-  team: { type: Schema.Types.ObjectId, ref: "Team" },
   user: { type: Schema.Types.ObjectId, ref: "User" },
 });
 

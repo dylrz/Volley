@@ -7,6 +7,9 @@ const statsSchema = new Schema({
   match: { type: Schema.Types.ObjectId, ref: "Match" },
   tournament: { type: Schema.Types.ObjectId, ref: "Tournament" },
 
+  currentScore: Number,
+  opponentScore: Number,
+
   attackAttempts: Number,
   totalKills: Number,
   attackOutError: Number,
