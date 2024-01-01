@@ -117,4 +117,16 @@ router.post("/create-set", async (req, res) => {
   }
 });
 
+router.get("/set/:setId", async (req, res) => {
+  try {
+    const setId = req.params.setId;
+    console.log(setId);
+    const set = await MatchSet.findById(setId);
+    console.log(set);
+    res.json(set);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 module.exports = router;

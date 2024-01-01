@@ -1,0 +1,494 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,700&display=swap');
+
+body {
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #8477dd;
+  appearance: none;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  font-size: 4rem;
+  color: #ffffff;
+  text-shadow: 2px 2px 1px #a883c1;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #ffffff;
+  text-shadow: 2px 2px 1px #a883c1;
+}
+
+h3 {
+  text-align: center;
+  font-size: 1.4rem;
+  color: #ffffff;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+label {
+  margin-bottom: 6px;
+  font-size: 1.2rem;
+  color: #ffffff; 
+  text-shadow: 1px 2px 1px #a883c1;
+  margin-right: auto;
+  margin-left: auto;
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+select {
+  width: 50%;
+  height: 50px;
+  margin: 10px 0;
+  margin-right: 15px;
+  display: inline-block;
+  border: 1px solid #ccc; 
+  border-radius: 20px; 
+  box-sizing: border-box; 
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  appearance: none; 
+  background-color: #f0f0f0;
+  font-family: inherit; 
+  font-size: inherit; 
+}
+
+select:focus {
+  border-color: #665ed0; 
+}
+
+a {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ffffff; 
+  margin-right: auto;
+  margin-left: auto;
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  text-decoration: none;
+}
+
+button {
+  width: 100px;
+  height: 20px;
+  font-size: 0.8rem;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  cursor: pointer;
+  background-color: #421C9C;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 10px 0;
+  transition: .3s;
+}
+
+button:hover {
+  background-color: #6858D6;
+}
+
+.team-items {
+  align-items: center;
+  padding: 10px 0; 
+  text-align: center; 
+  padding: 10px 0; 
+}
+
+.container {
+  margin: 0 auto;
+  background: linear-gradient(-80deg, #8477dd, #5e65b6);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(38, 20, 54, 0.4);
+  width: auto;
+  height: auto;
+}
+
+.container h2 {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.container a {
+  font-size: 1.2rem;
+  color: #ffffff; 
+  margin-right: auto;
+  margin-left: auto;
+  width: 50%;
+  justify-content: center;
+  display: flex;
+  text-decoration: none;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.container p {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin-right: auto;
+  margin-left: auto;
+  width: 50%;
+  justify-content: center;
+  display: flex;
+  text-decoration: none;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.player-stats {
+  margin-bottom: 30px;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.stat-row label {
+  flex-basis: 100px;
+}
+
+.stat-row input[type="number"] {
+  flex-grow: 1;
+  padding: 5px;
+  background-color: #f0f0f0; 
+  border-radius: 20px; 
+  border: none; 
+  color: #1f1f1f; 
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn {
+  width: 150px;
+  height: 48px;
+  font-size: 0.8rem;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  cursor: pointer;
+  background-color: #421C9C;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 10px 0;
+  transition: .3s;
+}
+
+.btn:hover {
+  background-color: #6858D6;
+}
+
+.input-pair {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.input-field {
+  max-width: 300px;
+  width: 100%;
+  height: 50px;
+  background-color: #f0f0f0;
+  margin: 10px 0px;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  padding: 0 .4rem;
+  margin-right: auto;
+  margin-left: auto;
+  width: 50%;
+}
+
+.input-field input {
+  background: none;
+  outline: none;
+  border: none;
+  min-width: 500px;
+  line-height: 1;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: #1f1f1f;
+}
+
+.input-field input::placeholder {
+  color: #8a8a8a;
+  font-weight: 400;
+  text-align: auto;
+  margin-right: auto;
+  margin-left: auto;
+  width: 50%;
+}
+
+.input-player-entry {
+  max-width: 100%; 
+  height: 50px;
+  background-color: #f0f0f0;
+  margin: 10px 0;
+  margin-right: 15px;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  padding: 0 0.4rem;
+}
+
+.input-player-entry input {
+  background: none;
+  outline: none;
+  border: none;
+  width: 100%;
+  line-height: 1;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: #1f1f1f;
+}
+
+.input-player-entry input::placeholder {
+  color: #8a8a8a;
+  font-weight: 400;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-right: auto;
+  margin-left: auto;
+  width: 90%;
+}
+
+.toolbar {
+  overflow: hidden;
+  background-color: #8477dd;
+  display: flex;
+}
+
+.toolbar form {
+  margin-left: auto;
+}
+
+.toolbar ul {
+  list-style-type: none; 
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+}
+
+
+.toolbar li {
+  float: left;
+  margin: 10px;
+}
+
+.toolbar a {
+  font-size: 0.8rem;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: #421C9C;
+  color: #fff;
+  font-weight: 500;
+  margin: 10px 0;
+  transition: .3s;
+  color: white; 
+  text-align: center; 
+  padding: 10px 20px; 
+  text-decoration: none; 
+}
+
+
+.toolbar a:hover {
+  background-color: #6858D6; 
+}
+
+.players-list ul {
+  list-style-type: none; 
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.players-list li {
+  color: #f0f0f0;
+  font-size: 1.2rem;
+}
+
+.player-entry {
+  margin-bottom: 6px;
+  font-size: 1.2rem;
+  color: #ffffff; 
+  text-shadow: 1px 2px 1px #a883c1;
+  margin-right: auto;
+  margin-left: auto;
+  width: 50%;
+  align-items: center;
+  justify-content: left;
+  display: flex;
+}
+
+.league-name {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-top: -10px;
+  color: rgb(255, 255, 255);
+  margin-left: 10px;
+}
+
+.new-team-link p {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  color: #ffffff; 
+  text-shadow: 2px 2px 1px #a883c1; 
+}
+
+.header {
+  background-color: #47407b;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.team-items {
+  align-items: center;
+}
+
+.team-taskbar {
+  position: relative;
+}
+
+.taskbar-content {
+  display: none;
+  position: absolute;
+  background-color: #6858D6;
+  z-index: 2;
+  min-width: 250px;
+  width: 20%;
+  height: 40px;
+  top: 50%;
+  left: 50%;     
+  transform: translate(-50%, -50%);
+  border-radius: 30px;
+}
+
+.taskbar-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.taskbar-content a:hover { background-color: #ddd; }
+
+
+.team-items a {
+  display: inline;
+}
+
+.team-items a:hover {
+  color: rgb(187, 187, 187);
+  font-weight: 1000;
+}
+
+.delete-team-prompt {
+  display: none;
+}
+
+.delete-team-prompt.active {
+  display: block;
+}
+
+.player-edit {
+  text-align: center; 
+}
+
+.player-edit p {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin-right: auto;
+  margin-left: auto;
+  width: 50%;
+  justify-content: center;
+  display: flex;
+  text-decoration: none;
+}
+
+.player-edit input, .player-edit select {
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin: 5px 0; 
+  height: 33px;
+  width: 10%;
+  max-width: 300px;
+  box-sizing: border-box;
+  background-color: #ffffff; 
+  border: 1px solid #ccc; 
+  color: #333; 
+}
+
+.player-edit input[type=number] {
+  width: 80px; 
+  border-radius: 10px; 
+  padding: 5px 10px;
+  margin: 5px 0;
+  max-width: 200px; 
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+.player-edit input {
+  height: 30px;
+  outline: none;
+  border: none;
+  line-height: 1;
+  font-size: 1.1rem;
+  color: #000000;
+  text-align: center;
+}
+
+.player-edit input::placeholder {
+  color: #8a8a8a;
+  font-weight: 400;
+}
+
+.player-edit select {
+  text-align: center;
+  width: 90px;
+  cursor: pointer;
+  display: inline-block; 
+  box-sizing: border-box;
+  appearance: none;
+  background-color: #ffffff; 
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.player-edit select:focus {
+  border-color: #665ed0;
+}
+
+.player-edit button {
+  height: 30px;
+  justify-content: space-between;
+}
