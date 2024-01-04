@@ -4,7 +4,7 @@ body {
   font-family: 'Lato', sans-serif;
   margin: 0;
   padding: 20px;
-  background-color: #8477dd;
+  background-color: #8b85c2;
   appearance: none;
 }
 
@@ -14,7 +14,7 @@ h1 {
   margin-bottom: 20px;
   font-size: 4rem;
   color: #ffffff;
-  text-shadow: 2px 2px 1px #a883c1;
+  text-shadow: 2px 2px 1px #8b85c2;
 }
 
 h2 {
@@ -22,7 +22,7 @@ h2 {
   margin-bottom: 20px;
   font-size: 2rem;
   color: #ffffff;
-  text-shadow: 2px 2px 1px #a883c1;
+  text-shadow: 2px 2px 1px #8b85c2;
 }
 
 h3 {
@@ -37,7 +37,7 @@ label {
   margin-bottom: 6px;
   font-size: 1.2rem;
   color: #ffffff; 
-  text-shadow: 1px 2px 1px #a883c1;
+  text-shadow: 1px 2px 1px #8b85c2;
   margin-right: auto;
   margin-left: auto;
   width: 50%;
@@ -109,7 +109,7 @@ button:hover {
 
 .container {
   margin: 0 auto;
-  background: linear-gradient(-80deg, #8477dd, #5e65b6);
+  background: linear-gradient(-40deg, #8477dd, #5e65b6);
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(38, 20, 54, 0.4);

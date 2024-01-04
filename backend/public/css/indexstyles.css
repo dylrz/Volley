@@ -16,21 +16,13 @@ body {
   overflow-x: hidden;
 }
 
-header {
-  background-color: #47407b;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .volleytracker {
+  position: absolute;
+  top: 20px;
   color: #ffffff;
-  font-weight: 900;
-}
-
-body {
-    background-color: #a4aef3;
+  font-weight: 700;
+  font-size: 5.6rem;
+  text-shadow: 6px 3px 2px #8b85c2;
 }
 
 a {
@@ -41,7 +33,7 @@ a {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background-color: #a4aef3;
+  background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.4)), linear-gradient(to left, #2f2f2f, #000);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,11 +41,11 @@ a {
 }
 
 .text {
-  font-size: 4rem;
+  font-size: 8rem;
   color: #ffffff;
   margin-bottom: 20px;
   margin-top: 20vh;
-  text-shadow: 2px 2px 1px #a883c1;
+  text-shadow: 2px 2px 1px #8b85c2;
   text-align: center;
 }
 
@@ -61,7 +53,7 @@ a {
   outline: none;
   border-radius: 50px;
   cursor: pointer;
-  background-color: #7a6f9b;
+  background-color: #8b85c2;
   text-decoration: none;
   color: #fff;
   text-transform: uppercase;
@@ -71,7 +63,7 @@ a {
 }
 
 .btn:hover {
-  background-color: #4c4389;
+  background-color: #6b6592
 }
 
 .button {
@@ -98,33 +90,33 @@ a {
 
 @media (max-width: 1900px) {
   .text {
-    font-size: 4rem;
+    font-size: 5rem;
     color: #ffffff;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     margin-top: 20vh;
-    text-shadow: 2px 2px 1px #a883c1;
+    text-shadow: 2px 3px 2px #8b85c2;
     text-align: center;
   }
 }
 
 @media (max-width: 1600px) {
   .text {
-    font-size: 3.75rem;
+    font-size: 4.6rem;
     color: #ffffff;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     margin-top: 20vh;
-    text-shadow: 2px 2px 1px #a883c1;
+    text-shadow: 2px 3px 2px #8b85c2;
     text-align: center;
   }
 }
 
 @media (max-width: 1200px) {
   .text {
-    font-size: 3.5rem;
+    font-size: 4.4rem;
     color: #ffffff;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     margin-top: 20vh;
-    text-shadow: 2px 2px 1px #a883c1;
+    text-shadow: 2px 3px 2px #8b85c2;
     text-align: center;
   }
 }
@@ -132,33 +124,33 @@ a {
 
 @media (max-width: 900px) {
   .text {
-    font-size: 3rem;
+    font-size: 4rem;
     color: #ffffff;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     margin-top: 20vh;
-    text-shadow: 2px 2px 1px #a883c1;
+    text-shadow: 2px 3px 2px #8b85c2;
     text-align: center;
   }
 }
 
 @media(max-width: 600px) {
   .text {
-    font-size: 2rem;
+    font-size: 3.8rem;
     color: #ffffff;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     margin-top: 20vh;
-    text-shadow: 2px 2px 1px #a883c1;
+    text-shadow: 2px 3px 2px #8b85c2;
     text-align: center;
   }
 }
 
 @media(max-height: 500px) {
   .text {
-    font-size: 2rem;
+    font-size: 3.2rem;
     color: #ffffff;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     margin-top: 20vh;
-    text-shadow: 2px 2px 1px #a883c1;
+    text-shadow: 2px 3px 2px #8b85c2;
     text-align: center;
   }
 
