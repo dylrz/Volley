@@ -120,11 +120,31 @@ router.post("/create-set", async (req, res) => {
 router.get("/set/:setId", async (req, res) => {
   try {
     const setId = req.params.setId;
-    console.log(setId);
     const set = await MatchSet.findById(setId);
-    console.log(set);
     res.json(set);
   } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+router.post("/set/save-lineup/:setId", async (req, res) => {
+  try {
+    const setId = req.params.setId;
+    const lineupData = req.body.lineup;
+
+    const set = await MatchSet.findById(setId);
+
+    if (!set) {
+      return res.status(404).send("Set not found");
+    }
+
+    set.lineup = lineupData;
+
+    await set.save();
+
+    res.status(200).send(set);
+  } catch (error) {
+    console.error(error);
     res.status(500).send(error);
   }
 });
