@@ -20,6 +20,19 @@ router.post("/login-register", async (req, res) => {
       createpasswordconfirm,
     } = req.body;
 
+    const existingUserByEmail = await User.findOne({ email: email });
+    const existingUserByUsername = await User.findOne({
+      username: createusername,
+    });
+
+    if (existingUserByEmail) {
+      return res.status(400).json({ error: "Email already in use" });
+    }
+
+    if (existingUserByUsername) {
+      return res.status(400).json({ error: "Username already in use" });
+    }
+
     if (createpassword !== createpasswordconfirm) {
       return res.status(400).json({ error: "Passwords do not match" });
     } else {
