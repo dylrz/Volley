@@ -145,7 +145,7 @@ router.get("/edit-team/:teamId", async (req, res) => {
 router.post("/update-team/:teamId", async (req, res) => {
   try {
     const teamId = req.params.teamId;
-    const { teamName, playerData } = req.body;
+    const { teamName, league, playerData } = req.body;
 
     await Team.findByIdAndUpdate(teamId, { teamName });
 
@@ -166,7 +166,7 @@ router.post("/update-team/:teamId", async (req, res) => {
 
     const updatedTeam = await Team.findByIdAndUpdate(
       teamId,
-      { teamName, players: playerIds },
+      { teamName, league, players: playerIds },
       { new: true }
     ).populate("players");
 
