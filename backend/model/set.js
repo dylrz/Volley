@@ -11,10 +11,12 @@ const setSchema = new Schema({
     teamScore: Number,
     opponentScore: Number,
   },
-  lineup: {
-    type: [{ type: Schema.Types.ObjectId, ref: "Player" }],
-    default: [],
-  },
+  lineup: [
+    {
+      player: { type: Schema.Types.ObjectId, ref: "Player" },
+      position: String,
+    },
+  ],
   match: { type: Schema.Types.ObjectId, ref: "Match" },
   setNumber: Number,
 });

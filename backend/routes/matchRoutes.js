@@ -130,7 +130,7 @@ router.get("/set/:setId", async (req, res) => {
 router.post("/set/save-lineup/:setId", async (req, res) => {
   try {
     const setId = req.params.setId;
-    const lineupData = req.body.lineup;
+    const lineupData = req.body.lineup; // Expecting an array of objects [{ player: playerID, position: positionLabel }, ...]
 
     const set = await MatchSet.findById(setId);
 
@@ -138,7 +138,15 @@ router.post("/set/save-lineup/:setId", async (req, res) => {
       return res.status(404).send("Set not found");
     }
 
-    set.lineup = lineupData;
+    // Validate and transform the lineupData if necessary
+    const transformedLineup = lineupData.map((entry) => {
+      return {
+        player: new mongoose.Types.ObjectId(entry.player),
+        position: entry.position,
+      };
+    });
+
+    set.lineup = transformedLineup;
 
     await set.save();
 
