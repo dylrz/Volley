@@ -109,6 +109,7 @@ router.get("/match/:matchId/sets", async (req, res) => {
 router.post("/create-set", async (req, res) => {
   try {
     const newSet = new MatchSet(req.body);
+    2;
     await newSet.save();
     res.status(201).send(newSet);
   } catch (error) {
@@ -137,6 +138,7 @@ router.post("/set/save-lineup/:setId", async (req, res) => {
     if (!set) {
       return res.status(404).send("Set not found");
     }
+    console.log(lineupData);
 
     // Validate and transform the lineupData if necessary
     const transformedLineup = lineupData.map((entry) => {
@@ -154,6 +156,24 @@ router.post("/set/save-lineup/:setId", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send(error);
+  }
+});
+
+router.post("/update-set-scores", async (req, res) => {
+  const { setId, teamScore, opponentScore } = req.body;
+  try {
+    const set = await MatchSet.findById(setId);
+    if (set) {
+      set.setScore.teamScore = teamScore;
+      set.setScore.opponentScore = opponentScore;
+      await set.save();
+      res.status(200).send({ message: "Scores updated successfully", set });
+    } else {
+      res.status(404).send({ message: "Set not found" });
+    }
+  } catch (error) {
+    console.error("Error updating set scores:", error);
+    res.status(500).send({ message: "Internal server error" });
   }
 });
 

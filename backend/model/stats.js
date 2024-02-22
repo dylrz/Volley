@@ -7,31 +7,31 @@ const statsSchema = new Schema({
   match: { type: Schema.Types.ObjectId, ref: "Match" },
   tournament: { type: Schema.Types.ObjectId, ref: "Tournament" },
 
-  currentScore: Number,
-  opponentScore: Number,
+  currentScore: { type: Number, default: 0 },
+  opponentScore: { type: Number, default: 0 },
 
-  attackAttempts: Number,
-  totalKills: Number,
-  attackOutError: Number,
-  attackBlocked: Number,
+  attackAttempts: { type: Number, default: 0 },
+  totalKills: { type: Number, default: 0 },
+  attackOutError: { type: Number, default: 0 },
+  attackBlocked: { type: Number, default: 0 },
 
-  passAttempts: Number,
-  passRatings: Number,
+  passAttempts: { type: Number, default: 0 },
+  passRatings: { type: Number, default: 0 },
 
-  serveAttempts: Number,
-  serveAces: Number,
-  serveErrors: Number,
+  serveAttempts: { type: Number, default: 0 },
+  serveAces: { type: Number, default: 0 },
+  serveErrors: { type: Number, default: 0 },
 
-  blockAttempts: Number,
-  blockStuffs: Number,
-  blockTouches: Number,
+  blockAttempts: { type: Number, default: 0 },
+  blockStuffs: { type: Number, default: 0 },
+  blockTouches: { type: Number, default: 0 },
 
-  digAttempts: Number,
-  digsMade: Number,
+  digAttempts: { type: Number, default: 0 },
+  digsMade: { type: Number, default: 0 },
 
-  setAttempts: Number,
-  setAssists: Number,
-  ballHandlingErrors: Number,
+  setAttempts: { type: Number, default: 0 },
+  setAssists: { type: Number, default: 0 },
+  ballHandlingErrors: { type: Number, default: 0 },
 });
 
 const Stats = mongoose.model("Stats", statsSchema);
