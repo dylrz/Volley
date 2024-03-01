@@ -45,7 +45,8 @@ router.post("/login-register", async (req, res) => {
       let registeredUser = await User.register(newUser, createpassword);
 
       res.status(201).json({
-        message: "Account created successfully. Please log in.",
+        message:
+          "Account created successfully. When VolleyTracker is ready, log in with the same credentials",
         username: registeredUser.name,
       });
     }
