@@ -105,6 +105,27 @@ router.get("/team/:teamId", async (req, res) => {
   }
 });
 
+router.get("/player/:playerId", async (req, res) => {
+  const playerId = req.params.playerId;
+
+  if (!mongoose.Types.ObjectId.isValid(playerId)) {
+    return res.status(400).send("Invalid player ID");
+  }
+
+  try {
+    const player = await Player.findById(playerId);
+
+    if (!player) {
+      return res.status(404).send("Player not found");
+    }
+
+    res.json({ player: player });
+  } catch (error) {
+    console.error("Error fetching player details:", error);
+    res.status(500).send("Error fetching player details");
+  }
+});
+
 router.delete("/delete-team/:teamId", async (req, res) => {
   try {
     const teamId = req.params.teamId;
