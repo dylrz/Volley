@@ -1,4 +1,4 @@
-secrets.env
+*.env
 node-modules/
 /zzz/frontend
 zzz/
