@@ -22,6 +22,7 @@ const teamRoutes = require("./routes/teamRoutes");
 const helpRoutes = require("./routes/helpRoutes");
 const matchRoutes = require("./routes/matchRoutes");
 const statRoutes = require("./routes/statRoutes");
+const videoRoutes = require("./routes/videoRoutes");
 
 const app = express();
 
@@ -81,6 +82,7 @@ app.use(teamRoutes);
 app.use(helpRoutes);
 app.use(matchRoutes);
 app.use(statRoutes);
+app.use(videoRoutes);
 
 const port = process.env.PORT || 8080;
 app.listen(port, function () {
