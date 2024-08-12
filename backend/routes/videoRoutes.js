@@ -15,12 +15,10 @@ async function getSecret() {
   return JSON.parse(payload);
 }
 
-// Define bucket name and blob name for signed URL
-const bucketName = "wp_clips";
-
 // Add route to generate signed URL
-router.get("/get_signed_url/:conceptName", async (req, res) => {
+router.get("/get_signed_url/:bucketName/:conceptName", async (req, res) => {
   try {
+    const bucketName = req.params.bucketName;
     const conceptName = req.params.conceptName;
     const blobName = `${conceptName}`;
     const jsonKey = await getSecret();
