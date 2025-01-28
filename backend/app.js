@@ -1,16 +1,18 @@
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
-const express = require("express"),
-  session = require("express-session"),
-  mongoose = require("mongoose"),
-  passport = require("passport"),
-  bodyParser = require("body-parser"),
-  LocalStrategy = require("passport-local"),
-  passportLocalMongoose = require("passport-local-mongoose"),
-  flash = require("connect-flash"),
-  utils = require("./utils"),
-  favicon = require("serve-favicon");
+const express = require("express");
+const session = require("express-session");
+const mongoose = require("mongoose");
+const passport = require("passport");
+const bodyParser = require("body-parser");
+const LocalStrategy = require("passport-local");
+const passportLocalMongoose = require("passport-local-mongoose");
+const flash = require("connect-flash");
+const utils = require("./utils");
+const cors = require("cors");
+const helmet = require("helmet");
+const favicon = require("serve-favicon");
 
 const http = require("http");
 
@@ -28,6 +30,8 @@ const app = express();
 
 app.use(favicon(path.join(__dirname, "public", "imgs", "favicon.ico")));
 
+app.use(helmet());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
@@ -37,8 +41,18 @@ app.use(
     saveUninitialized: true,
     cookie: {
       httpOnly: true,
+      secure: true, // Add this - ensures cookie only sent over HTTPS
+      sameSite: "strict", // Protect against CSRF
       maxAge: 24 * 60 * 60 * 1000,
     },
+  })
+);
+
+app.use(
+  cors({
+    origin: ["https://volleytracker.com", "https://www.volleytracker.com"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
@@ -65,6 +79,10 @@ mongoose
   })
   .then(() => {
     console.log("Connected to Mongoose");
+  })
+  .catch((err) => {
+    console.error("Mongoose Connection Error:", err);
+    process.exit(1);
   });
 
 app.set("view engine", "ejs");
@@ -83,6 +101,11 @@ app.use(helpRoutes);
 app.use(matchRoutes);
 app.use(statRoutes);
 app.use(videoRoutes);
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});
 
 const port = process.env.PORT || 9090;
 app.listen(port, function () {
